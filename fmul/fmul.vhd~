@@ -1,0 +1,63 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.std_logic_unsigned.all;
+use IEEE.STD_LOGIC_ARITH.ALL;
+
+-- clkで答を返す
+entity fmul is
+  port(clk:       in std_logic;
+       op1, op2:  in std_logic_vector(31 downto 0);
+       ans:       out std_logic_vector(31 downto 0) := x"00000000"
+       );
+end fmul;
+
+architecture VHDL of fmul is
+
+component infcheck -- opがinf or nanかcheck,正論理
+  port(op:  in std_logic_vector(31 downto 0);
+       ans:  out std_logic
+       );
+end component;
+
+component infcal
+  port(op1, op2:  in std_logic_vector(31 downto 0);
+       ans:       out std_logic_vector(31 downto 0)
+       );
+end component;
+
+
+
+  signal flag1: std_logic_vector(1 downto 0) := "00";
+  signal flag2: std_logic_vector(1 downto 0) := "00";
+  signal infans: std_logic_vector(31 downto 0) := x"00000000";
+  signal infresult1: std_logic_vector(31 downto 0) := x"00000000";
+  signal inf1: std_logic := '0';
+  signal inf2: std_logic := '0';
+  signal absans: std_logic_vector(31 downto 0) := x"00000000";
+  signal revans: std_logic_vector(31 downto 0) := x"00000000";
+  signal sign1,sign2: std_logic := '0';
+
+begin
+
+  infcalc:infcal -- 1clk後
+    port map(op1,op2,infans);
+
+
+
+
+sign1<=op1(31) xor op2(31);
+flag1<=inf1 & inf2;
+ans<=absans when flag2="00" and sign2 = '0' else
+     revans when flag2="00" and sign2 = '1' else
+     infresult1;
+  
+ loopcal: process(clk)
+ begin
+   if rising_edge(clk) then--2clk後に返答
+     sign2<=sign1;
+     flag2<=flag1;
+     infresult1<=infans;
+   end if;
+ end process;
+  
+end VHDL;
