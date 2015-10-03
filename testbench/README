@@ -1,5 +1,14 @@
 テストベンチです。
 
-VHDLのtextioの使い方を知らないので(すみません)、2オペランド1リザルトのarrayをつくるソフトウェアをそれぞれの演算で書きました。
+VHDLのtextioの使い方を知らないので(すみません)、2オペランド1リザルトのarrayをつくるソフトウェアをcで書きました。
+
+実行例
+
+gcc -o array arraygen.c
+./array add > addarray.txt
+cat addarray.txt
+・
+・
+・
 
 後はVHDLのtestbenchの方をよしなに変えてくれると動きます。

@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#define BINMAX 4;
+#define OPEMAX 7;
+
 void printbin(unsigned int a){
   printf("\"");
   int i=31;
@@ -13,29 +16,53 @@ void printbin(unsigned int a){
   }
   printf("\",\n");
 }
+
+int binary(char *ope){
+  char *binope[BINMAX] = {"add","mul","div","exp"}
+  int i=0;
+  while(i<BINMAX){
+    if(!strcmp(ope,binope[i]))
+      return 1;
+    i++;
+  }
+  return 0;
+}
+
+int support(char *ope){
+  char *oper[OPEMAX] = {"add","mul","div","exp","root","square","inv"}
+  int i=0;
+  while(i<OPEMAX){
+    if(!strcmp(ope,oper[i]))
+      return 1;
+    i++;
+  }
+  return 0;
+}
+
     
 int main(int argc, char *argv[]){
 
-  if(!strcmp(argv[1],"-h")){
-    printf("  arraygenの使い方\n");
-    printf("FPUのテストベンチのために、オペランドと答え,許される誤差を羅列したします。\n");
-    printf("テストベンチにコピペして下さい(textio使いたかったらこのcファイルをちょっといじって下さい)");
-    printf("このcファイルをコンパイルして、実行時に引数としてadd,mul,div,root,squareのいずれかを与えれば動きます");
-    printf("生成ファイルはあくまでコンパイラとマシンのFPUに依存してるのでご了承下さい");
-    printf("それではCPU実験頑張りましょう~\n");
-    return 0;
-  }
+  char *ope = argv[1];
+  char *opt = argv[2];
 
   unsigned int op1 = 0;
   unsigned int op2 = 0;
   unsigned int ans = 0;
 
-  
-  while(){
+  if(!support(ope)){
+    printf("sorry, %s is not supported\n", ope);
+    return 0;
+  }
+
+  while(1){
+    if(opgen(&op1,&op2,ope,opt))//演算によって生成するオペランドを変える。
+      break;
     printbin(op1);
-    printbin(op2);
+    if(binary(ope))
+      printbin(op2);
+    ans = operate(op1,op2,ope);
     printbin(ans);
-    printbin((unsigned int)gosa(op1,op2,ans));
+    printbin(gosa2(op1,op2,ans,ope));
   }
   return 0;
 }
