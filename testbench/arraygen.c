@@ -12,10 +12,14 @@
 extern unsigned int module_add(int num);
 extern unsigned int module_mul(int num);
 extern unsigned int module_div(int num);
-extern unsigned int module_exp(int num);
+extern unsigned int module_sqrt(int num);
+extern unsigned int module_sin(int num);
+extern unsigned int module_cos(int num);
+extern unsigned int module_atan(int num);
+
 
 int support(char *ope){
-  char *oper[OPEMAX] = {"add","mul","div","exp","root","square","inv"};
+  char *oper[OPEMAX] = {"add","mul","div","sqrt","sin","cos","atan"};
   int i=0;
   while(i<OPEMAX){
     if(!strcmp(ope,oper[i]))
@@ -47,8 +51,14 @@ int main(int argc, char *argv[]){
       module_mul(num);
     if(!(strcmp(ope,"div")))
       module_div(num);
-    if(!(strcmp(ope,"exp")))
-      module_exp(num);
+    if(!(strcmp(ope,"sqrt")))
+      module_sqrt(num);
+    if(!(strcmp(ope,"sin")))
+      module_sin(num);
+    if(!(strcmp(ope,"cos")))
+      module_cos(num);
+    if(!(strcmp(ope,"atan")))
+      module_atan(num);
     
   return 0;
 }

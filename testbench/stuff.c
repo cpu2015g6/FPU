@@ -45,7 +45,7 @@ float max4(float a, float b, float c, float d){
   return a;
 }
 
-int closed(float f1, float f2, float f3){
+int closed(float f1, float f2, float f3){//正規化数かどうか確認
   unsigned int i1,i2,i3;
   memcpy(&i1,&f1,4);
   memcpy(&i2,&f2,4);
@@ -53,16 +53,16 @@ int closed(float f1, float f2, float f3){
  
   unsigned int i;
   
-  i = (i1 >> 23) % 256;//f1の指数部,「f1が正規化数」は「i/=0,i/=255」と同じ
-  if(!i || i == 255)
+  i = (i1 >> 23) % 256;//f1の指数部,「f1が正規化数」は「i1=0 or i/=0,i/=255」と同じ
+  if(i1 && (!i || i == 255))
     return 0;
   
   i = (i2 >> 23) % 256;
-  if(!i || i == 255)
+  if(i2 && (!i || i == 255))
     return 0;
 
   i = (i3 >> 23) % 256;
-  if(!i || i == 255)
+  if(i3 && (!i || i == 255))
     return 0;
   return 1;
 }

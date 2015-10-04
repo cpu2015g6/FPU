@@ -7,7 +7,7 @@ OBJS = $(SRCS:.c=.o)
 TARGET = array
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ -lm
 
 clean:
 	rm $(TARGET) $(OBJS) *~
