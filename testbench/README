@@ -7,8 +7,8 @@
 
 実行例
 
-git clone https://github.com/cpu2015g6/FPU/tree/master/testbench_c
-cd testbench_c/
+git clone https://github.com/cpu2015g6/FPU/tree/master/testbench
+cd testbench/
 make
 ./array add 2
 cat addarray.txt
