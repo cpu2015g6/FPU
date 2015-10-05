@@ -11,7 +11,7 @@ extern int closed(float f1, float f2, float f3);
 
 void module_div(int num){
   unsigned int op1,op2,inf,sup;
-  int i;
+  int i,sgn;
   float f1,f2,ans,gosa;
 
   unsigned int idel = 0x00800000; /*floatで2^-126*/
@@ -28,9 +28,15 @@ void module_div(int num){
 
   do{
     i = rand();
+    sgn = rand() % 2;
+    i += sgn << 31;
+    memcpy(&op1,&i,4);
     memcpy(&op1,&i,4);
     memcpy(&f1,&i,4);
     i = rand();
+    sgn = rand() % 2;
+    i += sgn << 31;
+    memcpy(&op1,&i,4);
     memcpy(&op2,&i,4);
     memcpy(&f2,&i,4);
 
