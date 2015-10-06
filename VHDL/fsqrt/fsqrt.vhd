@@ -14,3 +14,6 @@ end fsqrt;
 architecture VHDL of fsqrt is
 
 begin
+
+
+end VHDL;

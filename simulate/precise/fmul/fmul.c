@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-extern int encode(uint32_t a)
+extern int encode(uint32_t a);
 
 uint32_t mulround(uint32_t ulp, uint32_t f){
   if(f >> 31){
