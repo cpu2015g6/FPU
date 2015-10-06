@@ -13,7 +13,7 @@ end fadd;
 
 architecture VHDL of fadd is
 
-component opcheck -- opがinf,nan,非正規化数,0かcheck
+component encode -- opがinf,nan,非正規化数,0かcheck
   port(op:  in std_logic_vector(31 downto 0);
        ans:  out std_logic_vector(2 downto 0)
        );
@@ -56,10 +56,10 @@ component revfadd
 
 begin
 
-  opch1:opcheck
+  opch1:encode
     port map(op1,opc1);
 
-  opch2:opcheck
+  opch2:encode
     port map(op2,opc2);
 
   infcalc:infcal -- 1clk後

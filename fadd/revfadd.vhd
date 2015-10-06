@@ -1,7 +1,8 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
-use IEEE.std_logic_unsigned.all;
 use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.std_logic_unsigned.all;
+
 
 entity revfadd is
   port(clk:         in std_logic;
@@ -25,6 +26,7 @@ component round2
   constant zeroes : std_logic_vector(24 downto 0) := (others=>'0');
   signal result :  std_logic_vector(24 downto 0) := (others=>'0');
   signal prior,infor : std_logic_vector(31 downto 0) := (others=>'0');
+  signal dbg: std_logic_vector(24 downto 0) := (others=>'0');
 
 begin
 
@@ -39,6 +41,7 @@ del<="0" & (op1(30 downto 23) - op2(30 downto 23)) when op1(30 downto 23) > op2(
      "100000000";
 prior<=op1 when del(8) = '0' else op2;
 infor<=op2 when del(8) = '0' else op1;
+dbg<="01" & infor(22 downto 0);
 man1<="1" & prior(22 downto 0) & "0";
 man2<=zeroes when del(7 downto 0) > "00011000" else
       zeroes(23 downto 0) & infor(22) when del(7 downto 0) = "00011000" and infor(30 downto 23) = "00000000" else
@@ -49,7 +52,7 @@ man2<=zeroes when del(7 downto 0) > "00011000" else
       zeroes(22 downto 0) & "1" & infor(22) when del(7 downto 0) = "00010111" else
       "1" & infor(22 downto 0) & "0" when del(7 downto 0) = "00000000" else
       "01" & infor(22 downto 0) when del(7 downto 0) = "00000001" else
-      zeroes(((conv_integer(del(7 downto 0)))-1) downto 0) & "1" & infor(22 downto (conv_integer(del(7 downto 0)) - 1));
+      zeroes(((conv_integer(del(7 downto 0)))-3) downto 0) & dbg(24 downto (conv_integer(del(7 downto 0)) - 1));
 result<=man1-man2;
 pointpre<=zeroes when del(7 downto 0) > "00011000" or del(7 downto 0) < x"02" else
           zeroes when infor(30 downto 23) = "00000000" and del(7 downto 0) < "00000011" else

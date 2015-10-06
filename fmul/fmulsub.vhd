@@ -12,10 +12,14 @@ entity fmulsub is
 end fmulsub;
 
 architecture VHDL of fmulsub is
-
+  signal sgn:std_logic := '0';
+  signal man:std_logic_vector(23 downto 0) := (others=>'0');
+  signal result: std_logic_vector(46 downto 0) := (others=>'0');
   
-
 begin
-
+sgn<=op1(31) xor op2(31);
+man<="1" & op2(22 downto 0);
+result <= (op2(22 downto 0) & "000000000000000000000000") +
+          (("0" & ())
 
   end VHDL;
