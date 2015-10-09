@@ -15,7 +15,7 @@ architecture VHDL of fdiv is
 
 
 begin
-
+  
 
 
 end VHDL;

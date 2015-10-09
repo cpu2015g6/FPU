@@ -1,0 +1,5 @@
+CによるFPUのシュミレーション
+
+floatのハードウェアによる型をuint32_tで表現。
+software-orientedでは、ソフトウェア的な整数演算やループを用いて正確なものを実装
+hardware-orientedでは、規格により許される誤差の範囲での出力をする。
