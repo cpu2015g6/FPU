@@ -49,7 +49,7 @@
 #define ISSUB(x)        (EXP(x) == 0)
 #define mask(x, y)      (((1u << ((y) - (x))) - 1u) << (x))
 
-uint32_t fadd(uint32_t, uint32_t);
+uint32_t fadd_s(uint32_t, uint32_t);
 
 uint32_t enc(char *p){
   int i=0;
@@ -102,7 +102,7 @@ int main()
     for (i = 0; i < 12; ++i) {
         all = err = 0;
         while (1) {
-            out.u = fadd(f[0].u, f[1].u);
+            out.u = fadd_s(f[0].u, f[1].u);
             ans.f = f[0].f + f[1].f;
             if (ISNaN(ans.u)) {
                 if (NaN == NaN_ANY)
@@ -158,7 +158,7 @@ int main()
     uint32_t k = enc("00000000000110100011110110011000");
     uint32_t j = enc("00001000001101110111001001110010");
 
-    fadd(k,j);
+    fadd_s(k,j);
     
     fclose(fp);
     

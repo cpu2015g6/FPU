@@ -4,7 +4,7 @@
 extern int fcmp(uint32_t a, uint32_t b);
 extern void printbin(uint32_t x);
 extern int encode(uint32_t a);
-extern uint32_t fmul(uint32_t a, uint32_t b);
+extern uint32_t fmul_s(uint32_t a, uint32_t b);
 extern int pencoder(uint32_t a);
 
 uint32_t fdivsub(uint32_t a, uint32_t b){
@@ -45,14 +45,14 @@ uint32_t fdivsub(uint32_t a, uint32_t b){
   opr = exp << 23; 
   while(i >= 0){
     opr += 1 << i;
-    if(fcmp((a << 1) >> 1,fmul(opr,(b << 1) >> 1)) < 0)
+    if(fcmp((a << 1) >> 1,fmul_s(opr,(b << 1) >> 1)) < 0)
       opr -= 1 << i;
     i--;
   }
   return (sgn << 31) + opr;
 }
   
-uint32_t fdiv(uint32_t a, uint32_t b){
+uint32_t fdiv_s(uint32_t a, uint32_t b){
   
   int typa = encode(a);
   int typb = encode(b);

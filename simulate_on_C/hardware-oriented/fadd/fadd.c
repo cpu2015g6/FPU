@@ -1,37 +1,9 @@
 #include <stdio.h>
 #include <stdint.h>
 
-uint32_t absfadd(uint32_t a, uint32_t b);
-uint32_t revfadd(uint32_t a, uint32_t b);
-
-int encode(uint32_t a){
-  int sgn = a >> 31;
-  int exp = (a >> 23) % 256;
-
-  if(!(a << 1))
-    return 6;//0
-
-  if(exp == 255){
-    if(a << 9)
-      return 7;//NaN
-    else if(sgn)
-      return 5;//-Inf
-    else
-      return 4;//+Inf
- }
-  
-  if(exp){//Normalized
-    if(sgn)
-      return 1;//-N
-    else
-      return 0;//+N
- }
-  
-  if(sgn)
-    return 3;//-DN
-
-  return 2;//+DN
-}
+extern uint32_t absfadd(uint32_t a, uint32_t b);
+extern uint32_t revfadd(uint32_t a, uint32_t b);
+extern int encode(uint32_t a);
 
 uint32_t fadd(uint32_t a, uint32_t b){
 

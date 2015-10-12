@@ -7,11 +7,13 @@
   a<b...-1
   err...未定義
  */
-int fcmp(uint32_t a, uint32_t b){
-  int sgna = a >> 31;
-  int sgnb = b >> 31;
 
-  if(a == b)
+//it has no different between hard and soft
+int fcmp(uint32_t a, uint32_t b){
+  int sgna = a >> 31;//sgna<=a(31)
+  int sgnb = b >> 31;//sgnb<=b(31)
+
+  if(a == b)//ans<=0 when a=b
     return 0;
   
   if(!a){//a=0

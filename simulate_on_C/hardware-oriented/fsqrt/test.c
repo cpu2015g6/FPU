@@ -9,6 +9,7 @@ extern int fcmp(uint32_t a, uint32_t b);
 extern uint32_t fadd(uint32_t a, uint32_t b);
 extern uint32_t fmul(uint32_t a, uint32_t b);
 extern uint32_t fdiv(uint32_t a, uint32_t b);
+extern uint32_t fsqrt_s(uint32_t a);
 extern uint32_t fsqrt(uint32_t a);
 
 uint32_t enc(char *p){
@@ -52,13 +53,14 @@ int main(int argc, char*argv[]){
     dr = sqrt(d1);
     fr = (float)dr;
     memcpy(&result,&fr,4);
+    result = fsqrt_s(i);
     out = fsqrt(i);
     if( ((i >> 23) % 256)//オペランドは正規化数に限る
-        && (fcmp(out,(result + 9)) == (fcmp(out,(result - 9))))
+        && (fcmp(out,(result + 3)) == (fcmp(out,(result - 3))))
 	&& (((out >> 23) % 256) + ((result >> 23) % 256))//非正規化数の丸め
 	&& (((i >> 23) % 256) != 255)){
       printf("miss!!\n");
-      printf("op:    ");
+      printf("op:     ");
       print_bin(i);
       printf("output: ");
       print_bin(out);

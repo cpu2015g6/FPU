@@ -5,10 +5,8 @@
 #include <string.h>
 
 extern int fcmp(uint32_t a, uint32_t b);
-extern uint32_t fadd(uint32_t a, uint32_t b);
-extern uint32_t fmul(uint32_t a, uint32_t b);
+extern uint32_t fdiv_s(uint32_t a, uint32_t b);
 extern uint32_t fdiv(uint32_t a, uint32_t b);
-extern uint32_t fsqrt(uint32_t a);
 
 uint32_t enc(char *p){
   int i=0;
@@ -57,9 +55,10 @@ int main(int argc, char*argv[]){
     dr = d1 / d2;
     fr = (float)dr;
     memcpy(&result,&fr,4);
+    result = fdiv_s(i,j);
     out = fdiv(i,j);
     if( ((i >> 23) % 256) && ((j >> 23) % 256) //オペランドは正規化数に限る
-        && (fcmp(out,(result + 9)) == (fcmp(out,(result - 9))))
+        && (fcmp(out,(result + 5)) == (fcmp(out,(result - 5))))
 	&& (((out >> 23) % 256) + ((result >> 23) % 256))//非正規化数の丸め
 	&& (((i >> 23) % 256) != 255) && (((j >> 23) % 256) != 255)){
       printf("miss!!\n");

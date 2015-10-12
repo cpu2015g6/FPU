@@ -5,10 +5,7 @@
 #include <string.h>
 
 extern int fcmp(uint32_t a, uint32_t b);
-extern uint32_t fadd(uint32_t a, uint32_t b);
-extern uint32_t fmul(uint32_t a, uint32_t b);
-extern uint32_t fdiv(uint32_t a, uint32_t b);
-extern uint32_t finv(uint32_t a);
+extern uint32_t finv_s(uint32_t a);
 extern uint32_t fsqrt(uint32_t a);
 
 uint32_t enc(char *p){
@@ -53,7 +50,7 @@ int main(int argc, char*argv[]){
     dr = 1 / d1;
     fr = (float)dr;
     memcpy(&result,&fr,4);
-    out = finv(i);
+    out = finv_s(i);
     if( ((i >> 23) % 256) //オペランドは正規化数に限る
         && (fcmp(out,(result + 5)) == (fcmp(out,(result - 5))))
 	&& (((out >> 23) % 256) + ((result >> 23) % 256))//非正規化数の丸め

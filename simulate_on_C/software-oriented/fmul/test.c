@@ -7,6 +7,7 @@
 extern int fcmp(uint32_t a, uint32_t b);
 extern uint32_t fadd(uint32_t a, uint32_t b);
 extern uint32_t fmul(uint32_t a, uint32_t b);
+extern uint32_t fmulprec(uint32_t a, uint32_t b);
 extern uint32_t fdiv(uint32_t a, uint32_t b);
 extern uint32_t fsqrt(uint32_t a);
 
@@ -57,7 +58,7 @@ int main(int argc, char*argv[]){
     dr = d1 * d2;
     fr = (float)dr;
     memcpy(&result,&fr,4);
-    fm = fmul(i,j);
+    fm = fmulprec(i,j);
     if( ((i >> 23) % 256) && ((j >> 23) % 256) //オペランドは正規化数に限る
         && (fcmp(fm,(result + 3)) == (fcmp(fm,(result - 3))))
 	&& (((fm >> 23) % 256) + ((result >> 23) % 256))//非正規化数の丸め
@@ -68,7 +69,7 @@ int main(int argc, char*argv[]){
       printf("op2:    ");
       print_bin(j);
       printf("output: ");
-      print_bin(fmul(i,j));
+      print_bin(fm);
       printf("ans:    ");
       print_bin(result);
       err++;

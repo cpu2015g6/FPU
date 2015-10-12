@@ -5,7 +5,7 @@
 extern int fcmp(uint32_t a, uint32_t b);
 extern void printbin(uint32_t x);
 extern int encode(uint32_t a);
-extern uint32_t fmul(uint32_t a, uint32_t b);
+extern uint32_t fmulprec(uint32_t a, uint32_t b);
 extern int pencoder(uint32_t a);
 
 uint32_t invsub(uint32_t a){
@@ -26,7 +26,7 @@ uint32_t invsub(uint32_t a){
   int i = 22;
   while(i >= 0){
     ans += (1 << i);
-    if(fcmp((127 << 23),fmul(a,ans)) < 0)
+    if(fcmp((127 << 23),fmulprec(a,ans)) < 0)
       ans -= (1 << i);
     i--;
   }
