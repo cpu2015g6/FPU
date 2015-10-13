@@ -2,16 +2,16 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.std_logic_unsigned.all;
 
-entity encode is
+entity opcheck is
   port(op:  in std_logic_vector(31 downto 0);
        ans:  out std_logic_vector(2 downto 0)
        );
-end encode;
+end opcheck;
 
-architecture VHDL of encode is
+architecture VHDL of opcheck is
 -- encode the status of operand
--- 100 +Inf   101 -Inf   111 NaN   110 Zero
--- 010 Positive Denormalized Number   011 Negative Denormalized Number 
+-- 000 +Inf   100 -Inf   001 NaN   101 Zero
+-- 010 Positive Denormalized Number   110 Negative Denormalized Number 
 -- 000 Positive Normalized Number   001 Negative Normalized Number
 
 begin

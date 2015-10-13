@@ -5,11 +5,9 @@
 #include <string.h>
 
 extern int fcmp(uint32_t a, uint32_t b);
-extern uint32_t fadd(uint32_t a, uint32_t b);
-extern uint32_t fmul(uint32_t a, uint32_t b);
-extern uint32_t fmulprec(uint32_t a, uint32_t b);
-extern uint32_t fdiv(uint32_t a, uint32_t b);
-extern uint32_t fsqrt(uint32_t a);
+extern uint32_t fmul_s(uint32_t a, uint32_t b);
+extern void printbinn(uint32_t a);
+extern int encode(uint32_t a);
 
 uint32_t enc(char *p){
   int i=0;
@@ -58,7 +56,13 @@ int main(int argc, char*argv[]){
     dr = d1 * d2;
     fr = (float)dr;
     memcpy(&result,&fr,4);
-    fm = fmulprec(i,j);
+    fm = fmul_s(i,j);
+    if(encode(fm) < 2){
+    printbinn(i);
+    printbinn(j);
+    printbinn(fm-2);
+    printbinn(fm+2);
+    }
     if( ((i >> 23) % 256) && ((j >> 23) % 256) //オペランドは正規化数に限る
         && (fcmp(fm,(result + 3)) == (fcmp(fm,(result - 3))))
 	&& (((fm >> 23) % 256) + ((result >> 23) % 256))//非正規化数の丸め

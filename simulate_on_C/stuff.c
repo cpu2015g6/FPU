@@ -38,7 +38,7 @@ void printbinn(unsigned int a){
       printf("0");
     i--;
   }
-  printf("\", ");
+  printf("\",\n");
 }
  
 void printbin(unsigned int a){
