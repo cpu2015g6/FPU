@@ -8,13 +8,17 @@ uint32_t ftoi(uint32_t f){
   uint32_t man = (f << 9) >> 9;
   uint32_t absans;
   uint32_t sgn = f >> 31;
-  uint32_t abs = (f << 1) >> 1;//abs<=f(30 downto 0)
   
-  if(abs >= (158 << 23))//overflow
+  if(exp >= 31 + 127)//overflow
     return (sgn << 31) + 0x7fffffff;
   
-  if(abs < (126 << 23))//underflow
+  if(exp < 127){//underflow
+    if(exp == 126 && sgn)
+      return 0xffffffff;
+    else if(exp == 126)
+      return 1;
     return 0;
+   }
   
   if(ub > 22)
     absans = (1 << ub) + (man << (ub - 23));//absans<=zero(downto) & "1" & man(22 downto 0)
@@ -24,7 +28,7 @@ uint32_t ftoi(uint32_t f){
   if(!sgn)
     return absans;
   
-  return (1 << 31) + ((1 << 31) - absans) - 1;
+  return (1 << 31) + ((1 << 31) - absans);
 }
   
   

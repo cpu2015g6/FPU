@@ -6,7 +6,7 @@ software-orientedでは、ソフトウェア的な整数演算やループを用
 
 hardware-orientedでは、規格により許される誤差の範囲での出力をする(VHDLの模倣)。
 
-テストは、hard版をsoft版と比較して計測
+テストは、hard版をsoft版と比較して計測(sin,cos,atanはmath.hを採用)
 
 進捗...2015/10/20現在
 
@@ -30,9 +30,9 @@ fatan...under construction
 
 --rev2
 
-ftoi...under construction
+ftoi...soft/hard実装、テスト済(soft側をcastで実装。値が違ったのは-0.5**を-1に丸めるときのみ(soft側では0に丸めていた))
 
-itof...under construction
+itof...soft/hard実装、テスト済(soft側をcastで実装。値が違ったのは端数=0.5の丸め方向の違いのみ)
 
 floor...under construction
 
