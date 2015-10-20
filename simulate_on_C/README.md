@@ -22,9 +22,9 @@ fsqrt...soft/hard実装、テスト済
 
 fdiv...soft/hard実装、テスト済
 
-fsin...soft/hard実装、テスト済
+fsin...hard実装、テスト済
 
-fcos...soft/hard実装、テスト中(0.5%誤差ケースあり)
+fcos...hard実装、テスト中(0.5%誤差ケースあり)
 
 fatan...under construction
 
