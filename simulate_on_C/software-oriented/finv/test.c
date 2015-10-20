@@ -7,6 +7,7 @@
 extern int fcmp(uint32_t a, uint32_t b);
 extern uint32_t finv_s(uint32_t a);
 extern uint32_t fsqrt(uint32_t a);
+extern void printbinn(uint32_t a);
 
 uint32_t enc(char *p){
   int i=0;
@@ -52,17 +53,19 @@ int main(int argc, char*argv[]){
     memcpy(&result,&fr,4);
     out = finv_s(i);
     if( ((i >> 23) % 256) //オペランドは正規化数に限る
-        && (fcmp(out,(result + 5)) == (fcmp(out,(result - 5))))
+        //&& (fcmp(out,(result + 5)) == (fcmp(out,(result - 5))))
 	&& (((out >> 23) % 256) + ((result >> 23) % 256))//非正規化数の丸め
 	&& (((i >> 23) % 256) != 255)){
-      printf("miss!!\n");
+      /*printf("miss!!\n");
       printf("op1:    ");
       print_bin(i);
       printf("output: ");
       print_bin(out);
       printf("ans:    ");
       print_bin(result);
-      err++;
+      err++;*/
+      printbinn(i);
+      printbinn(result);
     }
     k++;
   }

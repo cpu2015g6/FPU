@@ -44,6 +44,20 @@ void printbin(unsigned int a){
   printf("\",\n");
 }
 
+void print23bin(unsigned int a){
+  printf("\"");
+  int i=22;
+  while(i+1){
+    if((a >> i) % 2)
+      printf("1");
+    else
+      printf("0");
+    i--;
+  }
+  printf("\",\n");
+}
+
+
 int encode(uint32_t a){
   int sgn = a >> 31;
   int exp = (a >> 23) % 256;

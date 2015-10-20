@@ -4,15 +4,15 @@ USE ieee.std_logic_unsigned.all;
 use ieee.std_logic_textio.all;
 use std.textio.all;
 
---
+-- test FPU which isn't synchronized to clk
 
-ENTITY FADD_testbench IS
+ENTITY FPU_testbench IS
   generic (ARRAY_SIZE : integer := );--ここにARRAYのサイズ-1を入力
-END FADD_testbench;
+END FPU_testbench;
 
-ARCHITECTURE testbench OF FADD_testbench IS 
+ARCHITECTURE testbench OF FPU_testbench IS 
   -- Component Declaration for the Unit Under Test (UUT)
-  COMPONENT fadd
+  COMPONENT f  --any component of FPU
     Port (clk : in std_logic;
       op1,op2  : in  STD_LOGIC_VECTOR (31 downto 0);
       ans :      out STD_LOGIC_VECTOR (31 downto 0));
@@ -29,13 +29,12 @@ ARCHITECTURE testbench OF FADD_testbench IS
   signal simclk : std_logic := '0';
   signal state : std_logic_vector(2 downto 0) := "111";
   signal addr : std_logic_vector(18 downto 0) := "0000000000000000000";
-  signal ans1,ans2 : std_logic_vector(31 downto 0) := x"00000000";
+  signal low,high : std_logic_vector(31 downto 0) := x"00000000";
   signal miss : std_logic_vector(19 downto 0) := x"00000";
 
 
-
 BEGIN
-  unit : fadd PORT MAP (
+  unit : f PORT MAP (-- any port of FPU
     clk  => simclk,
     op1  => tb_input1,
     op2  => tb_input2,
@@ -47,18 +46,10 @@ BEGIN
     if rising_edge(simclk) then
       tb_input1 <= rom(conv_integer(addr));
       tb_input2 <= rom(conv_integer(addr+1));
-      ans1 <= rom(conv_integer(addr+2));
-      ans2 <= ans1;
-      addr<=addr+3;
-      if ans2(30 downto 23) = "11111111" and ans2(22 downto 0) /= "00000000000000000000000" then --up to NaN equalism
-        if tb_output(30 downto 23) /= "11111111" then
-          miss<=miss+1;
-        end if;
-      elsif ans2(30 downto 0) = "0000000000000000000000000000000" then
-	if tb_output(30 downto 0) /= "0000000000000000000000000000000" then
-	  miss<=miss+1;
-	end if;
-      elsif ans2 /= tb_output then
+      low <= rom(conv_integer(addr+2));
+      high <= rom(conv_integer(addr+3));
+      addr<=addr+4;
+      if not((low <= tb_output) and (high >= tb_output)) then
         miss <= miss + 1;
       end if;
     end if;
@@ -66,10 +57,11 @@ BEGIN
       clockgen : process
   begin
     simclk <= '0';
-    wait for 30 ns;
+    wait for 5 ns;
     simclk <= '1';
-    wait for 30 ns;
+    wait for 5 ns;
     
   end process;
 end testbench;
  
+

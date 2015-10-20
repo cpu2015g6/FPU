@@ -4,7 +4,7 @@ SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 
 
-TARGET = array
+TARGET = test
 
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^ -lm

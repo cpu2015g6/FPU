@@ -4,7 +4,7 @@
 extern uint32_t fmulprec(uint32_t a, uint32_t b);
 extern int fcmp(uint32_t a, uint32_t b);
 extern uint32_t finv(uint32_t a);
-extern void printbin(unsigned int a);
+extern void print23bin(unsigned int a);
 extern void printbinn(unsigned int a);
 
 int main(){
@@ -23,8 +23,8 @@ int main(){
       i--;
     }
     //printbinn(a);
-    //printbin(b);
-    printbin(finv(b));
+    //print23bin(b);
+    print23bin(finv(b));
     a+=(1<<13);
   }
   return 0;
