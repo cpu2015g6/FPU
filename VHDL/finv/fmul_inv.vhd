@@ -45,9 +45,18 @@ begin
   de1<=del(11 downto 8);
   de2<=del(7 downto 4);
   de3<=del(3 downto 0);
-
 preans<=("0" & del) + ("0" & r11 & "0000") + ("00000" & r12) + ("00000" & r21) + ("000000000" & r22(7 downto 4)) + ("00000000" & r13(7 downto 4)) + ("00000000" & r31(7 downto 4));
 
-ans<= "0000000000" & (preans + 1) when flag = '0' else "00000000000" & preans(12 downto 1);
+	process(clk)
+	 begin
+	  if rising_edge(clk) then
+	    if flag = '0' then
+			ans<= "0000000000" & (preans + 1);
+		 else
+			ans<="00000000000" & preans(12 downto 1);
+		 end if;
+	  end if;
+	end process;
+
 
   end VHDL;

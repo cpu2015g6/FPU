@@ -14,13 +14,16 @@ end fmul_sqrt;
 
 architecture VHDL of fmul_sqrt is
   signal preans: std_logic_vector(13 downto 0);
-  signal d1,d2,d3,de1,de2,de3: std_logic_vector(3 downto 0);
-  signal r11,r12,r21,r22,r13,r31: std_logic_vector(7 downto 0);
+  signal d1,d2,d3: std_logic_vector(3 downto 0);
+  signal de1,de2,de3: std_logic_vector(4 downto 0);
+  signal r12,r22,r13: std_logic_vector(8 downto 0);
+  signal r11,r21,r31: std_logic_vector(8 downto 0);
 
   component quamul
   port(clk:       in std_logic;
-       op1, op2:  in std_logic_vector(3 downto 0);
-       ans:       out std_logic_vector(7 downto 0) := x"00"
+       op1:  in std_logic_vector(3 downto 0);
+		 op2:  in std_logic_vector(4 downto 0);
+       ans:   out std_logic_vector(8 downto 0) := (others=>'0')
        );
 end component;
 
@@ -42,12 +45,12 @@ begin
   d1<=romdata(22 downto 19);
   d2<=romdata(18 downto 15);
   d3<=romdata(14 downto 11);
-  de1<=del(11 downto 8);
-  de2<=del(7 downto 4);
-  de3<=del(3 downto 0);
+  de1<=del(12 downto 8);
+  de2<="0" & del(7 downto 4);
+  de3<="0" & del(3 downto 0);
 
-preans<=("0" & del) + ("00" & r11 & "0000") + ("000000" & r12) + ("000000" & r21) + ("0000000000" & r22(7 downto 4)) + ("000000000" & r13(7 downto 4)) + ("000000000" & r31(7 downto 4));
+preans<=("0" & del) + ("0" & r11 & "0000") + ("00000" & r12) + ("00000" & r21) + ("000000000" & r22(7 downto 4)) + ("000000000" & r13(7 downto 4)) + ("000000000" & r31(7 downto 4));
 
-ans<= "000000000" & (preans + 1) when flag = '1' else "0000000000" & preans(13 downto 1);
+ans<= "000000000" & (preans + 1) when flag = '0' else "0000000000" & preans(13 downto 1);
 
   end VHDL;

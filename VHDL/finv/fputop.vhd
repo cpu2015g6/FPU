@@ -13,13 +13,6 @@ entity fputop is
 
 architecture VHDL of fputop is
 
-component finv
-  port(clk: in std_logic;
-       op:  in std_logic_vector(31 downto 0);
-       ans:       out std_logic_vector(31 downto 0) := x"00000000"
-       );
-end component;
-
 component u232c
   generic (wtime: std_logic_vector(15 downto 0) := x"1ADB");
   Port ( clk  : in  STD_LOGIC;

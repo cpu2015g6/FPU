@@ -55,7 +55,7 @@ begin
 del<=op(12 downto 0);
 addr<=op(23 downto 13);
 flag<=addr(10);
-exp<=("0" & op(30 downto 24)) + 64;
+exp<=("0" & op(30 downto 24)) + 63 + op(23);
 ans<="0" & exp & (data + mulans) when code1(2 downto 1) = "00" else
      "11111111110000000000000000000000" when code1 = "111" else
      "00000000000000000000000000000000" when code1="110" else
