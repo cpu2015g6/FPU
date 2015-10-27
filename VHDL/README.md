@@ -2,19 +2,21 @@
 
 --rev1
 
-fadd...シミュ、実機での動作確認済。16.5ns
+ucf...特に制約なし,14.52ns
 
-fmul...シミュ、実機での動作確認済。15.5ns
+fadd...シミュ、実機での動作確認済。2段pipelined
 
-finv...シミュ、実機での動作確認済。18.5ns
+fmul...シミュ、実機での動作確認済。1段pipelined
 
-fsqrt...シミュでの動作確認中。
+finv...シミュ、実機での動作確認済。2段pipelined
 
-fdiv...under construction
+fsqrt...シミュでの動作確認済、実機での動作確認中。2段pipelined
 
-fsin...under construction
+fdiv...シミュでの動作確認中,4段pipelined(finv&fmul)
 
-fcos...under construction
+fsin...シミュでの動作確認中
+
+fcos...シミュでの動作確認中
 
 fatan...under construction
 

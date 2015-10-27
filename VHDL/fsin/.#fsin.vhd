@@ -1,1 +1,0 @@
-mizuta1018@mizuta1018-ThinkPad-T440p.7349:1445820026

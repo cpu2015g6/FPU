@@ -27,7 +27,7 @@ component fmul--2clk
        );
 end component;
 
-signal invans,a2,aa2: std_logic_vector(31 downto 0);
+signal invans,a2,aa2,divans: std_logic_vector(31 downto 0);
 
 begin
   
@@ -37,12 +37,14 @@ begin
    fmuler:fmul port map
     (clk, aa2, invans, ans);
 
-	process(clk)
-	 begin
-	  if rising_edge(clk) then
-	   a2<=op2;
-	   aa2<=a2;
-	  end if;
-	 end process;
+   pipe:process(clk)
+   begin
+     if rising_edge(clk) then
+       a2<=op2;
+       aa2<=a2;
+     end if;
+   end process;
 
+ans<=divans;
+   
 end VHDL;

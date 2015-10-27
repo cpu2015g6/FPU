@@ -29,11 +29,10 @@ end component;
 end component;
 
 signal addr: std_logic_vector(10 downto 0);
-signal data,data2,mulans: std_logic_vector(22 downto 0);
+signal data,adata,data2,mulans: std_logic_vector(22 downto 0);
 signal del: std_logic_vector(11 downto 0);
-signal flag,sgn,sgn2: std_logic;
+signal flag,flag2,sgn,sgn2: std_logic;
 signal exp,exp2: std_logic_vector(7 downto 0);
-signal code1: std_logic_vector(2 downto 0);
 
 begin
 
@@ -43,28 +42,21 @@ begin
   mul_inv:fmul_inv
     port map(clk,data2,del,flag,mulans);
 
-
--- when code1(2 downto 1) = "00" else
-     --"11111111110000000000000000000000" when code1 = "111" else
-     --sgn & "1111111100000000000000000000000" when code1 < 5 else
-     --sgn & "0000000000000000000000000000000";
-
-  process(clk)
+del<=op(11 downto 0);
+addr<=op(22 downto 12);
+sgn<=op(31);
+exp<=253 - op(30 downto 23);
+flag<='0' when addr < 849 else '1';
+  
+  pipe:process(clk)
     begin
       if rising_edge(clk) then
-        del<=op(11 downto 0);
-        addr<=op(22 downto 12);
-        sgn<=op(31);
         sgn2<=sgn;
-        exp<="11111101" - op(30 downto 23);
         exp2<=exp;
-        ans<=sgn2 & exp2 & (data - mulans);
-		  if addr < 849 then
-		   flag<='0';
-		  else
-		   flag<='1';
-		  end if;
+        adata<=data;
       end if;
     end process;
+
+ans<=sgn2 & exp2 & (adata - mulans);
         
 end VHDL;

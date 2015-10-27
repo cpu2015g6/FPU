@@ -22,6 +22,12 @@ component u232c
          tx   : out STD_LOGIC);
 end component;
 
+component finv
+  port(clk: in std_logic;
+		 op: in std_logic_vector(31 downto 0);
+		 ans: out std_logic_vector(31 downto 0));
+		 end component;
+
   signal clk,iclk: std_logic;
   type rom_t is array(0 to 3945) of std_logic_vector(31 downto 0);
   constant rom: rom_t := ("11100000000110000110011010111101",

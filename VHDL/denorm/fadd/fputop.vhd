@@ -531,7 +531,7 @@ end component;
 "00010000101111011101000000000100");
 
   signal op1,op2,ans1,ans,answ,low,high: std_logic_vector(31 downto 0);
-  signal addr: std_logic_vector(15 downto 0) := (others=>'0');
+  signal addr: std_logic_vector(9 downto 0) := (others=>'0');
   signal miss: std_logic_vector(31 downto 0) := (others=>'0');
   signal rom_o: std_logic_vector(7 downto 0) := (others=>'1');
   signal uart_go: std_logic;
@@ -576,7 +576,7 @@ begin
        state<=state+1;
        answ<=ans;
        state2<="00000";
-     elsif state = "00011" and uart_go = '1' then --op1の出力
+     elsif state = "00011" and uart_go = '1'then --op1の出力
        state2<=state2+1;
        if op1(31-conv_integer(state2)) = '1' then
          rom_o<=x"31";
@@ -587,13 +587,13 @@ begin
          state<=state+1;
          state2<="00000";
        end if;
-     elsif state = "00100" and uart_go = '1' then -- 改行
+     elsif state = "00100" and uart_go = '1'then -- 改行
        state<=state+1;
        rom_o<=x"0d";
-     elsif state = "00101" and uart_go = '1' then
+     elsif state = "00101" and uart_go = '1'then
        state<=state+1;
        rom_o<=x"0a";
-     elsif state = "00110" and uart_go = '1' then --op2の出力
+     elsif state = "00110" and uart_go = '1'then --op2の出力
        state2<=state2+1;
        if op2(31-conv_integer(state2)) = '1' then
          rom_o<=x"31";
@@ -604,13 +604,13 @@ begin
          state<=state+1;
          state2<="00000";
        end if;
-     elsif state = "00111" and uart_go = '1' then -- 改行
+     elsif state = "00111" and uart_go = '1'then -- 改行
        state<=state+1;
        rom_o<=x"0d";
-     elsif state = "01000" and uart_go = '1' then
+     elsif state = "01000" and uart_go = '1'then
        state<=state+1;
        rom_o<=x"0a";
-     elsif state = "01001" and uart_go = '1' then --outputの出力
+     elsif state = "01001" and uart_go = '1'then --outputの出力
        state2<=state2+1;
        if answ(31-conv_integer(state2)) = '1' then
          rom_o<=x"31";
@@ -621,13 +621,13 @@ begin
          state<=state+1;
          state2<="00000";
        end if;
-     elsif state = "01010" and uart_go = '1' then -- 改行
+     elsif state = "01010" and uart_go = '1'then -- 改行
        state<=state+1;
        rom_o<=x"0d";
-     elsif state = "01011" and uart_go = '1' then
+     elsif state = "01011" and uart_go = '1'then
        state<=state+1;
        rom_o<=x"0a";
-     elsif state = "01100" and uart_go = '1' then --answerの出力
+     elsif state = "01100" and uart_go = '1'then --answerの出力
        state2<=state2+1;
        if ans1(31-conv_integer(state2)) = '1' then
          rom_o<=x"31";
@@ -638,16 +638,16 @@ begin
          state<=state+1;
          state2<="00000";
        end if;
-     elsif state = "01101" and uart_go = '1' then -- 改行
+     elsif state = "01101" and uart_go = '1'then -- 改行
        state<=state+1;
        rom_o<=x"0d";
-     elsif state = "01110" and uart_go = '1' then
+     elsif state = "01110" and uart_go = '1'then
        state<=state+1;
        rom_o<=x"0a";
-     elsif state = "01111" and uart_go = '1' then -- 改行
+     elsif state = "01111" and uart_go = '1'then -- 改行
        state<=state+1;
        rom_o<=x"0d";
-     elsif state = "10000" and uart_go = '1' then
+     elsif state = "10000" and uart_go = '1'then
        state<=state+1;
        rom_o<=x"0a";
      elsif state = "10001" then --low,highとの比較
@@ -662,7 +662,7 @@ begin
        if high < answ or low > answ then
          miss<=miss+1;
        end if;
-     elsif state = "10100" and uart_go = '1' then --iterの出力
+     elsif state = "10100" and uart_go = '1'then --iterの出力
        state2<=state2+1;
        if iter(31-conv_integer(state2)) = '1' then
          rom_o<=x"31";
@@ -673,13 +673,13 @@ begin
          state<=state+1;
          state2<="00000";
        end if;
-     elsif state = "10101" and uart_go = '1' then -- 改行
+     elsif state = "10101" and uart_go = '1'then -- 改行
        state<=state+1;
        rom_o<=x"0d";
-     elsif state = "10110" and uart_go = '1' then
+     elsif state = "10110" and uart_go = '1'then
        state<=state+1;
        rom_o<=x"0a";
-     elsif state = "10111" and uart_go = '1' then --missの出力
+     elsif state = "10111" and uart_go = '1'then --missの出力
        state2<=state2+1;
        if miss(31-conv_integer(state2)) = '1' then
          rom_o<=x"31";
@@ -690,16 +690,16 @@ begin
          state<=state+1;
          state2<="00000";
        end if;
-     elsif state = "11000" and uart_go = '1' then -- 改行
+     elsif state = "11000" and uart_go = '1'then -- 改行
        state<=state+1;
        rom_o<=x"0d";
-     elsif state = "11001" and uart_go = '1' then
+     elsif state = "11001" and uart_go = '1'then
        state<=state+1;
        rom_o<=x"0a";
-     elsif state = "11010" and uart_go = '1' then -- 改行
+     elsif state = "11010" and uart_go = '1'then -- 改行
        state<=state+1;
        rom_o<=x"0d";
-     elsif state = "11011" and uart_go = '1' then
+     elsif state = "11011" and uart_go = '1'then
        state<="00000";
        rom_o<=x"0a";
      end if;

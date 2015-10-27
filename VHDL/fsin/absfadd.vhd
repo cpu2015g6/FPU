@@ -1,0 +1,1 @@
+/home/mizuta1018/HW/FPU/VHDL/fcos/absfadd.vhd

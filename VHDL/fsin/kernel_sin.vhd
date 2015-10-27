@@ -30,21 +30,21 @@ end component;
 
 component fmul_3--1clk
   port(clk: in std_logic;
-       op1, op2:  in std_logic_vector(31 downto 0);
+       op:  in std_logic_vector(31 downto 0);
        ans:       out std_logic_vector(31 downto 0) := x"00000000"
        );
 end component;
 
 component fmul_5--1clk
   port(clk: in std_logic;
-       op1, op2:  in std_logic_vector(31 downto 0);
+       op:  in std_logic_vector(31 downto 0);
        ans:       out std_logic_vector(31 downto 0) := x"00000000"
        );
 end component;
 
 component fmul_7--1clk
   port(clk: in std_logic;
-       op1, op2:  in std_logic_vector(31 downto 0);
+       op:  in std_logic_vector(31 downto 0);
        ans:       out std_logic_vector(31 downto 0) := x"00000000"
        );
 end component;

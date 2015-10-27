@@ -68,7 +68,8 @@ int main(int argc, char*argv[]){
       printf("ans:    ");
       print_bin(result);
       err++;*/
-      printbinn
+      printbinn(i);
+      printbinn(out);
     }
     k++;
   }

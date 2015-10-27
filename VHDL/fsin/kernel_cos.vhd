@@ -4,14 +4,14 @@ use IEEE.std_logic_unsigned.all;
 use IEEE.STD_LOGIC_ARITH.ALL;
 
 -- 8clkで返す
- entity kernel_sin
+ entity kernel_cos
   port(clk: in std_logic;
        op: in std_logic_vector(31 downto 0);
        ans:  out std_logic_vector(31 downto 0)
        );
-end kernel_sin;
+end kernel_cos;
 
-architecture VHDL of kernel_sin is
+architecture VHDL of kernel_cos is
   signal a2,m2,m4,m6,r2,r4,r6,ar4,ad02,aad02,aaad02,ad46 : std_logic_vector(31 downto 0);
 
 component fadd--2clk
