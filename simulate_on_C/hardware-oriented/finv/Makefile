@@ -7,7 +7,7 @@ OBJS = $(SRCS:.c=.o)
 TARGET = test
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^ -lm
+	$(CC) $(CFLAGS) -o $@ $^ invrom.h -lm
 
 clean:
 	rm $(TARGET) $(OBJS) *~

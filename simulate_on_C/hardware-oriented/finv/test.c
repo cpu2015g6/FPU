@@ -5,6 +5,8 @@
 #include <string.h>
 
 extern int fcmp(uint32_t a, uint32_t b);
+extern void printtable(int *table);
+extern void printbin(uint32_t a);
 extern uint32_t fadd(uint32_t a, uint32_t b);
 extern uint32_t fmul(uint32_t a, uint32_t b);
 extern uint32_t fdiv(uint32_t a, uint32_t b);
@@ -38,40 +40,36 @@ int main(int argc, char*argv[]){
   uint32_t i;
   uint32_t result;
   uint32_t out;
-  int num = atoi(argv[1]);
   int k=0;
-  double d1,dr;
-  float f1,fr;
-  int err = 0;
-  
-  srand((unsigned) time(NULL));
+  int del = 0;
+  int table[128];
 
-  while(k < num){
-    i = rand();
-    i += (rand() % 2) << 31;
-    memcpy(&f1,&i,4);
-    d1 = (double)f1;
-    dr = 1 / d1;
-    fr = (float)dr;
-    memcpy(&result,&fr,4);
+  i=0;
+  while(i<128){
+    table[i]=0;
+    i++;
+  }
+  int offset = 1;
+  i=(127<<23) + (offset << 13);
+
+  while(k < 8192){
     result=finv_s(i);
     out = finv(i);
-    if( ((i >> 23) % 256) //オペランドは正規化数に限る
-        && (fcmp(out,(result + 3)) == (fcmp(out,(result - 3))))
-	&& (((out >> 23) % 256) + ((result >> 23) % 256))//非正規化数の丸め
-	&& (((i >> 23) % 256) != 255)){
-      printf("miss!!\n");
-      printf("op1:    ");
-      print_bin(i);
-      printf("output: ");
-      print_bin(out);
-      printf("ans:    ");
-      print_bin(result);
-      err++;
-    }
-    k++;
+    del = out - result;
+    if(del == -9){
+      printbin(i);
+      printbin(out);
+      printbin(result);
+      return 0;
+     }
+    table[del+64] = table[del+64]+1;
+    k += 1;
+    i += 1;
   }
-  printf("total: %d errors\n",err);
+  
+  
+  
+  printtable(table);
   
   
   return 0;

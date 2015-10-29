@@ -13,10 +13,16 @@ end finv;
 
 architecture VHDL of finv is
 
-  component invromfetch 
-  port(addr:  in std_logic_vector(10 downto 0); --11bit
-       data,data2:  out std_logic_vector(22 downto 0) -- 23bit
-       );
+  component blockram
+  generic (
+    dwidth : integer := 23;
+    awidth : integer := );
+  port (
+    clk  : in  std_logic;
+    we   : in  std_logic;
+    di   : in  std_logic_vector(dwidth - 1 downto 0);
+    do   : out std_logic_vector(dwidth - 1 downto 0);
+    addr : in  std_logic_vector(awidth - 1 downto 0));
 end component;
 
   component fmul_inv

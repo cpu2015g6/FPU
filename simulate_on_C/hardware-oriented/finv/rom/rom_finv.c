@@ -24,9 +24,9 @@ int main(){
       i--;
     }
     //printbinn(a);
-    //rint23bin(b);
-    print23bin(fmul_s(b,b));
-    a+=(1<<12);
+    print23bin(b);
+    //print23bin(fmul_s(b,b));
+    a+=(1<<13);
   }
   return 0;
 }
