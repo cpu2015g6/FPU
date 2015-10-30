@@ -56,7 +56,7 @@ int main(int argc, char*argv[]){
     memcpy(&result,&fr,4);
     fm = fmul(i,j);
     if( ((i >> 23) % 256) && ((j >> 23) % 256) //オペランドは正規化数に限る
-        && (fcmp(fm,(result + 3)) == (fcmp(fm,(result - 3))))
+        && (fcmp(fm,(result + 2)) == (fcmp(fm,(result - 2))))
 	&& (((fm >> 23) % 256) + ((result >> 23) % 256))//非正規化数の丸め
 	&& (((i >> 23) % 256) != 255) && (((j >> 23) % 256) != 255)){
       printf("miss!!\n");
