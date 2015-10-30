@@ -6,12 +6,11 @@
 #include <string.h>
 
 extern int fcmp(uint32_t a, uint32_t b);
-extern uint32_t fadd(uint32_t a, uint32_t b);
-extern uint32_t fmul(uint32_t a, uint32_t b);
-extern uint32_t fdiv(uint32_t a, uint32_t b);
+extern void printtable(int *table);
 extern uint32_t fsqrt_s(uint32_t a);
 extern uint32_t fsqrt(uint32_t a);
 extern void printbinn(uint32_t a);
+extern void printbin(uint32_t a);
 
 uint32_t enc(char *p){
   int i=0;
@@ -39,41 +38,44 @@ int main(int argc, char*argv[]){
   uint32_t i;
   uint32_t result;
   uint32_t out;
-  int num = atoi(argv[1]);
   int k=0;
-  double d1,dr;
-  float f1,fr;
-  int err = 0;
-  
-  srand((unsigned) time(NULL));
+  int del = 0;
+  int table[128];
 
-  while(k < num){
-    i = rand();
-    memcpy(&f1,&i,4);
-    d1 = (double)f1;
-    dr = sqrt(d1);
-    fr = (float)dr;
-    memcpy(&result,&fr,4);
-    result = fsqrt_s(i);
-    out = fsqrt(i);
-    if( ((i >> 23) % 256)//オペランドは正規化数に限る
-        //&& (fcmp(out,(result + 3)) == (fcmp(out,(result - 3))))
-	&& (((out >> 23) % 256) + ((result >> 23) % 256))//非正規化数の丸め
-	&& (((i >> 23) % 256) != 255)){
-      /*printf("miss!!\n");
-      printf("op:     ");
-      print_bin(i);
-      printf("output: ");
-      print_bin(out);
-      printf("ans:    ");
-      print_bin(result);
-      err++;*/
-      printbinn(i);
-      printbinn(out);
-    }
-    k++;
+  if(argc < 2){
+   printf("few args!!\n");
+   return 1;
   }
-  printf("total: %d errors\n",err);
+
+  i=0;
+  while(i<128){
+    table[i]=0;
+    i++;
+  }
+  int offset = atoi(argv[1]);
+  i=(127<<23) + (offset << 14);
+ 
+  //int dist = 0;
+  //int j=-20;
+  //while(j < 20){
+    while(k < 16384 * 1024){
+      result=fsqrt_s(i);
+      out = fsqrt(i);
+      del = out - result;
+      /*if(del == 6){
+	printbin(i);
+	printbin(out);
+	printbin(result);
+	return 0;
+	}*/
+      table[del+64] = table[del+64]+1;
+      k += 1;
+      i += 1;
+    }
+    //}
+  
+  
+  printtable(table);
   
   
   return 0;

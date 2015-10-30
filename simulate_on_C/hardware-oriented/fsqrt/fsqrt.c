@@ -2,57 +2,45 @@
 #include <stdint.h>
 #include "sqrtrom.h"
 
+extern int fcmp(uint32_t a, uint32_t b);
 extern void printbin(uint32_t x);
-extern int encode(uint32_t a);
-extern uint32_t ctou(char *c);
+//extern int encode(uint32_t a);
+//extern int pencoder(uint32_t a);
+extern uint32_t ctou23(char *c);
+extern uint32_t ctou13(char *c);
+extern uint32_t vector(uint32_t a, int i, int j);
+  
+uint32_t fmul_man(uint32_t data2,uint32_t del){//14桁*14桁
+  uint32_t c1 = vector(data2,13,7);
+  uint32_t c2 = vector(data2,6,0);
+  uint32_t d1 = vector(del,13,7);
+  uint32_t d2 = vector(del,6,0);
+  
+  uint32_t ans = c1*d1 + (c2*d1 >> 7) + (d2*c1 >> 7);
 
-uint32_t fmul_sqrt(uint32_t data2, uint32_t del, int flag){
-  uint32_t d1,d2,d3,de1,de2,de3;
-  uint32_t r11,r12,r21,r22,r13,r31;
-  uint32_t ans;
-  d1=data2>>19;
-  d2=(data2>>15)%16;
-  d3=(data2>>11)%16;
-  de1=del>>8;
-  de2=(del>>4)%16;
-  de3=del%16;
-  
-  r11=d1*de1;
-  r12=d1*de2;
-  r21=d2*de1;
-  r22=d2*de2;
-  r13=d1*de3;
-  r31=d3*de1;
-  
-  ans=del + (r11 << 4) + (r12 + r21) + ((r22 + r13 + r31) >> 4);
-  if(flag)
-    return ans >> 1;
-  return ans >> 2;
+  return ans;
 }
-  
 
 uint32_t fsqrt(uint32_t a){
  
-  int typa = encode(a);
-  uint32_t expa = (a >> 23) % 256;
-  uint32_t exp = ((expa - 127) / 2) + 127;
-  uint32_t addr = (a << 8) >> 21;//addr<=a(23 downto 13)
-  uint32_t data = ctou(sqrtrom[addr]);//data<=rom(conv_integer(addr))
-  uint32_t data2 = ctou(sqrtrom2[addr]);//data2<=rom2(conv_integer(addr))
-  uint32_t del = a % 8192;//del<=a(12 downto 0)
-  if(addr == 1024)
-    del *= 2; 
+  uint32_t exp = 64 + (vector(a,30,23) - 1) / 2;
+  uint32_t addr = vector(a,23,14);
+  uint32_t del = vector(a,13,0);
+  
+  uint32_t data = ctou23(rom[addr]);//after 1clk
+  uint32_t data2 = ctou13(rom2[addr]) + (1 << 13);//after 1clk
 
+  uint32_t del2 = fmul_man(data2,del);//after 2clk
+  if(addr == 512)
+   del2 = del;
 
-  if(typa == 7)
-    return 0xffc00000;
-  if(typa == 6)
-    return 0;
-  if(typa == 4)
-    return 0x7f800000;
-  if(addr>>10)//繰り下がりがあるかどうか
-    return (exp << 23) + data + fmul_sqrt(data2,del,0);
+  uint32_t ans;
+  if(addr >> 9)
+   ans = (exp << 23) + data + del2/2;//after 3clk
+  else
+   ans = (exp << 23) + data + del2;//after 3clk
 
-  return (exp << 23) + data + fmul_sqrt(data2,del,1);
-  	
+  return ans;
+  
 }
+  

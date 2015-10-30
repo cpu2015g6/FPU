@@ -1,1 +1,0 @@
-/home/mizuta1018/HW/FPU/simulate_on_C/stuff.c

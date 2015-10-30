@@ -6,9 +6,9 @@ software-orientedでは、ソフトウェア的な整数演算やループを用
 
 hardware-orientedでは、規格により許される誤差の範囲での出力をする(VHDLの模倣)。
 
-テストは、hard版をsoft版と比較して計測(sin,cos,atanはmath.hを採用)
+テストは、hard版をsoft版と比較して計測
 
-進捗...2015/10/20現在
+進捗...2015/10/29現在
 
 --rev1
 
@@ -18,23 +18,22 @@ fmul...soft/hard実装、テスト済
 
 finv...soft/hard実装、テスト済
 
+//finv
+
 fsqrt...soft/hard実装、テスト済
 
-fdiv...soft/hard実装、テスト済
-
-fsin...hard実装、テスト済
-
-fcos...hard実装、テスト中(0.5%誤差ケースあり)
-
-fatan...under construction
-
---rev2
-
-ftoi...soft/hard実装、テスト済(soft側をcastで実装。値が違ったのは-0.5**を-1に丸めるときのみ(soft側では0に丸めていた))
-
-itof...soft/hard実装、テスト済(soft側をcastで実装。値が違ったのは端数=0.5の丸め方向の違いのみ)
-
-floor...under construction
-
-Scraps...under construction
-
+//fsqrt
+./test 0
+-6    0
+-5    0
+-4    0
+-3    29045
+-2    1266070
+-1    6527817 
++0    5708719 
++1    2281268 
++2    753347
++3    182669
++4    26527
++5    1753 
++6    1

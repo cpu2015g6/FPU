@@ -7,6 +7,53 @@
   encode
  */
 
+int distri(int *table){
+  int i=0;
+  int low=0;
+  int high=0;
+  while(i<128){
+   if(table[i]){
+    low=i;
+    break;
+   }
+   i++;
+  }
+  while(i<128){
+   if(!table[i]){
+    high=i;
+    break;
+   }
+   i++;
+  }
+  return high-low;
+} 
+
+void print13bin(unsigned int a){
+  printf("\"");
+  int i=22;
+  while(i-9){
+    if((a >> i) % 2)
+      printf("1");
+    else
+      printf("0");
+    i--;
+  }
+  printf("\",\n");
+}
+
+void print14bin(unsigned int a){
+  printf("\"");
+  int i=22;
+  while(i-8){
+    if((a >> i) % 2)
+      printf("1");
+    else
+      printf("0");
+    i--;
+  }
+  printf("\",\n");
+}
+
 void printtable(int *table){
   int i=0;
   int j,k,num,a;
@@ -96,6 +143,31 @@ uint32_t ctou23(char *c){
   return u;
 }
 
+uint32_t ctou14(char *c){
+  int i = 0;
+  uint32_t u=0;
+  while(i < 14){
+    if(c[i] == '1')
+      u += 1 << (13-i);
+    i++;
+    //printbin(u);
+  }
+  return u;
+}
+
+uint32_t ctou13(char *c){
+  int i = 0;
+  uint32_t u=0;
+  while(i < 13){
+    if(c[i] == '1')
+      u += 1 << (12-i);
+    i++;
+    //printbin(u);
+  }
+  return u;
+}
+
+
 int pencoder(uint32_t x){//software instruction
   int i = 31;
   while(i >= 0){
@@ -124,6 +196,19 @@ void printbinn(uint32_t a){
 void print23bin(uint32_t a){
   printf("\"");
   int i=22;
+  while(i+1){
+    if((a >> i) % 2)
+      printf("1");
+    else
+      printf("0");
+    i--;
+  }
+  printf("\",\n");
+}
+
+void print_13bin(uint32_t a){
+  printf("\"");
+  int i=12;
   while(i+1){
     if((a >> i) % 2)
       printf("1");

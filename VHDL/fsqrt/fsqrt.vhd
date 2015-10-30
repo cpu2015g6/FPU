@@ -13,10 +13,28 @@ end fsqrt;
 
 architecture VHDL of fsqrt is
 
-  component sqrtromfetch 
-  port(addr:  in std_logic_vector(10 downto 0); --11bit
-       data,data2:  out std_logic_vector(22 downto 0) -- 23bit
-       );
+  component blockram1
+    generic (
+    dwidth : integer := 23;
+    awidth : integer := 10);
+    port (
+    clk  : in  std_logic;
+    we   : in  std_logic;
+    di   : in  std_logic_vector(dwidth - 1 downto 0);
+    do   : out std_logic_vector(dwidth - 1 downto 0);
+    addr : in  std_logic_vector(awidth - 1 downto 0));
+end component;
+
+  component blockram2
+    generic (
+    dwidth : integer := 13;
+    awidth : integer := 10);
+    port (
+    clk  : in  std_logic;
+    we   : in  std_logic;
+    di   : in  std_logic_vector(dwidth - 1 downto 0);
+    do   : out std_logic_vector(dwidth - 1 downto 0);
+    addr : in  std_logic_vector(awidth - 1 downto 0));
 end component;
 
   component fmul_sqrt
@@ -28,36 +46,71 @@ end component;
        );
 end component;
 
-signal addr: std_logic_vector(10 downto 0);
+signal din,do1,do2: std_logic_vector(12 downto 0);
+signal addr: std_logic_vector(9 downto 0);
 signal data,adata,data2,mulans: std_logic_vector(22 downto 0);
-signal del: std_logic_vector(12 downto 0);
-signal flag,exf,exf2: std_logic;
+signal del: std_logic_vector(13 downto 0);
+signal flag,exf,exf2,we: std_logic;
 signal exp,exp2: std_logic_vector(7 downto 0);
 
 begin
 
-  fetch:sqrtromfetch
-    port map(addr,data,data2);
+  rom1:blockram1
+    port map(clk,we,din,do1,addr);
+
+  rom1:blockram1
+    port map(clk,we,din,do2,addr);
 
   mul_inv:fmul_sqrt
     port map(clk,data2,del,flag,mulans);
 	 
-del<=op(12 downto 0);
-addr<=op(23 downto 13);
-flag<=addr(10);
+del1<=op(13 downto 7);
+del2<=op(6 downto 0);
+we<='0';
+addr<=op(23 downto 14);
+flag<=addr(9);
 exf<='1' when addr = "10000000000" else '0';
 exp<=("0" & op(30 downto 24)) + 63 + op(23);
 
-  process(clk)
-    begin
-      if rising_edge(clk) then
-        exp2<=exp;
-        adata<=data;
-		  exf2<=exf;
-      end if;
-    end process;
+  pipe1:process(clk)
+  begin
+    if rising_edge(clk) then
+      aexp<=exp;
+      aflag<=flag;
+      aexf<=exf;
+      adel1<=del1;
+      adel2<=del2;
+      init<=do1;
+      data1<=do2(13 downto 7);
+      data2<=do2(6 downto 0);
+    end if;
+  end process;
+
+mul1<=adel1*data1;
+mul2<=adel1*data2(13 downto 7);
+mul3<=adel2*data1(13 downto 7);
+
+  pipe2:process(clk)
+  begin
+    if rising_edge(clk) then
+      if aexf = '0' then
+        amul1<="000000000" & mul1;
+        amul2<="0000000000000000" & mul2(13 downto 7);
+        amul3<="0000000000000000" & mul3(13 downto 7);
+        ainit<=init;
+        aaexp<=aexp;
+        aaflag<=aflag;
+      else
+        amul1<="000000000" & adel1 & adel2;
+        amul2<="00000000000000000000000";
+        amul3<="00000000000000000000000";
+        ainit<=init;
+        aaexp<=aexp;
+        aaflag<=aflag;
+    end if;
+  end process;
 	 
-ans<="0" & exp2 & (adata + mulans) when exf2 = '0' else
-     "0" & exp2 & (adata + (mulans(21 downto 0) & "0"));
+ans<="0" & aaexp & (ainit + ("0" & (mul1 + mul2 + mul3))(21 downto 0))) when aaflag = '1' else
+     "0" & aaexp & (ainit + mul1 + mul2 + mul3);
 
 end VHDL;

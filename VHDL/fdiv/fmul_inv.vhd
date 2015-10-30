@@ -1,1 +1,0 @@
-/home/mizuta1018/HW/FPU/VHDL/finv/fmul_inv.vhd
