@@ -1,4 +1,5 @@
-進捗...2015/10/29現在
+#VHDL
+進捗...2015/11/1現在
 
 --rev1
 
@@ -8,7 +9,7 @@ fadd...シミュ、実機での動作確認済。2段pipelined
 
 fmul...シミュ、実機での動作確認済。2段pipelined
 
-finv...2段pipelining...(ramのデータ作成に苦労してます)
+finv...動作確認中。3段pipelined
 
-fsqrt...シミュでの動作確認済、実機での動作確認中。2段pipelined
+fsqrt...動作確認中。3段pipelined
 
