@@ -47,7 +47,7 @@ uint32_t finv(uint32_t a,int offset){
   uint32_t del2 = fmul_man(data2,del);//after 2clk
 
   uint32_t ans = (sgn << 31) + (exp << 23) + data - del2;//after 3clk
-
+  
   return ans;
   
 }

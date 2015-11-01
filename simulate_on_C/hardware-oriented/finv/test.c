@@ -13,8 +13,6 @@ extern int distri(int *table);
 extern uint32_t ctou13(char* c);
 extern uint32_t ctou23(char* c);
 
-extern uint32_t fmul_s(uint32_t a, uint32_t b);
-extern int fcmp(uint32_t a, uint32_t b);
 extern void printbinn(unsigned int a);
 extern void print23bin(unsigned int a);
 extern void print13bin(unsigned int a);
@@ -85,7 +83,7 @@ void print_bin(uint32_t x) {
 }
 
 int main(int argc, char*argv[]){
-  
+  int failed=0;
   uint32_t i;
   uint32_t result;
   uint32_t out;
@@ -127,15 +125,9 @@ int main(int argc, char*argv[]){
 	result=finv_s(i);
 	out = finv(i,j);
 	del = out - result;
-	/*if(del < -3 || del > 3){
-	  printbin(i);
-	  printbin(out);
-	  printbin(result);
-	  return 0;
-	  }else*/
 	table[del+64] = table[del+64]+1;
-	k += 1;
-	i += 1;
+	k++;
+	i++;
       }
       
       printtable(table);
@@ -157,42 +149,35 @@ int main(int argc, char*argv[]){
     }
     
     k=0;
+    i=(127<<23) + (offset << 13);
      while(k < 8192){
 	result=finv_s(i);
 	out = finv(i,best);
 	del = out - result;
-	if(del < -63 || del > 63){
-	  printbin(i);
-	  printbin(out);
-	  printbin(result);
-	  //return 0;
-	  }else
 	table[del+64] = table[del+64]+1;
-	k += 1;
-	i += 1;
+	k++;
+	i++;
       }
-     
-     /* print23bin(ctou(dummy[offset]));
-     printtable(table);
-     printf("%d\n",lub(table));*/
-     //aaa[offset] = 0 - ((lub(table)+glb(table)) /2);
-    
+
+     //print23bin(ctou(dummy[offset]));
+     //printtable(table);
+     //printf("%d\n",lub(table));
+     aaa[offset] = 0 - ((lub(table)+glb(table)) /2);
+     fprintf(stderr,"aaa: %d\n",aaa[offset]);
      /*m=0;
      while(m<128){
        table[m]=0;
        m++;
      }*/
     
-     if(dist < 8){
-      printf("clear: offset=%d,dist=%d,best=%d,glb=%d,lub=%d\n",offset,dist,best,glb(table),lub(table));
-	if(glb(table) < -3 || lub(table) > 3)
-          fprintf(stderr,"warning!!!!!!!: offset=%d,dist=%d,best=%d,glb=%d,lub=%d\n",offset,dist,best,glb(table),lub(table));
+     if(dist < 10){
+      fprintf(stderr,"clear: offset=%d,dist=%d,best=%d,glb=%d,lub=%d\n",offset,dist,best,glb(table),lub(table));
     }else{
-      printf("failed %d\n",offset);
-      //return 1;
+      fprintf(stderr,"FAILED...: offset=%d,dist=%d,best=%d,glb=%d,lub=%d\n",offset,dist,best,glb(table),lub(table));
+      failed++;
       }
-    
-    incdecprint2(dummy2,best,offset);
+    fprintf(stderr,"sinchoku...%d/%d\n",offset-atoi(argv[1]),atoi(argv[2])-atoi(argv[1]));
+    //incdecprint2(dummy2,best,offset);
 
       m=0;
       while(m<128){
@@ -209,7 +194,7 @@ int main(int argc, char*argv[]){
   }
 
 	//printf("best case: %d dist: %d\n",best,dist);
-  
+  fprintf(stderr,"failed cases: %d/%d\n",failed,atoi(argv[2])-atoi(argv[1]));
   
   return 0;
 }

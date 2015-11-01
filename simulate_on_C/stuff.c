@@ -18,14 +18,15 @@ int distri(int *table){
    }
    i++;
   }
-  while(i<128){
-   if(!table[i]){
+  i=127;
+  while(i){
+   if(table[i]){
     high=i;
     break;
    }
-   i++;
+   i--;
   }
-  return high-low;
+  return high-low+1;
 } 
 
 void print13bin(unsigned int a){

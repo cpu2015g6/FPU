@@ -21,14 +21,14 @@ uint32_t fmul_man(uint32_t data2,uint32_t del){//14桁*14桁
   return ans;
 }
 
-uint32_t fsqrt(uint32_t a){
+uint32_t fsqrt(uint32_t a, int offset){
  
   uint32_t exp = 64 + (vector(a,30,23) - 1) / 2;
   uint32_t addr = vector(a,23,14);
   uint32_t del = vector(a,13,0);
   
   uint32_t data = ctou23(rom[addr]);//after 1clk
-  uint32_t data2 = ctou13(rom2[addr]) + (1 << 13);//after 1clk
+  uint32_t data2 = ctou13(rom2[addr]) + (1 << 13) + offset;//after 1clk
 
   uint32_t del2 = fmul_man(data2,del);//after 2clk
   if(addr == 512)
