@@ -3,27 +3,43 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
-#include "invromdummy.h"
+#include "sqrtromdummy.h"
 
 extern void printtable(int *table);
 extern void printbin(uint32_t a);
-extern uint32_t finv(uint32_t a, int offset);
-extern uint32_t finv_s(uint32_t a);
+extern uint32_t fsqrt(uint32_t a, int offset);
+extern uint32_t fsqrt_s(uint32_t a);
 extern int distri(int *table);
 extern uint32_t ctou13(char* c);
 extern uint32_t ctou23(char* c);
 
+extern uint32_t fmul_s(uint32_t a, uint32_t b);
+extern int fcmp(uint32_t a, uint32_t b);
 extern void printbinn(unsigned int a);
 extern void print23bin(unsigned int a);
 extern void print13bin(unsigned int a);
 extern void print_13bin(uint32_t a);
 
+void clear(int *table){
+  int i=0;
+  while(i<128){
+    table[i]=0;
+    i++;
+  } 
+}
+
 void incdecprint(char mem[1024][23],int a,int offset){
-  print23bin(ctou23(mem[offset]) + a);
+  if(offset < 512)
+    print23bin(ctou23(mem[offset+512]) + a);
+  else
+    print23bin(ctou23(mem[offset-512]) + a);
 }
 
 void incdecprint2(char mem[1024][13],int best,int offset){
-  print_13bin(ctou13(mem[offset]) + best);
+  if(offset < 512)
+    print_13bin(ctou13(mem[offset+512]) + best);
+  else
+    print_13bin(ctou13(mem[offset-512]) + best);
 }
   
 
@@ -83,30 +99,25 @@ void print_bin(uint32_t x) {
 }
 
 int main(int argc, char*argv[]){
-  int failed=0;
+  
   uint32_t i;
   uint32_t result;
   uint32_t out;
   int aaa[1024];
   int k=0;
-  int m=0;
   int del = 0;
   int table[128];
 
-  if(argc < 2){
+  if(argc < 4){
    printf("few args!!\n");
    return 1;
   }
 
-  i=0;
-  while(i<128){
-    table[i]=0;
-    i++;
-  }
+  clear(table);
+
   int offset = atoi(argv[1]);
   int offset_term = atoi(argv[2]);
-  i=(127<<23) + (offset << 13);
-
+  
   int j=0 - (atoi(argv[3]));
   int dist=1000;
   int best=0;
@@ -119,19 +130,19 @@ int main(int argc, char*argv[]){
     while(j < atoi(argv[3]) + 1){
 
       k=0;
-      i=(127<<23) + (offset << 13);
+      i=(127<<23) + (offset << 14);
 
-      while(k < 8192*1024){
-	result=finv_s(i);
-	out = finv(i,j);
+      while(k < 16384){
+	result=fsqrt_s(i);
+	out = fsqrt(i,j);
 	del = out - result;
 	table[del+64] = table[del+64]+1;
 	k++;
 	i++;
       }
       
-      printtable(table);
-      return 1;
+      //printtable(table);
+      //return 1;
       
 
       if(distri(table) < dist){
@@ -139,53 +150,42 @@ int main(int argc, char*argv[]){
 	dist = distri(table);
       }
 
-      m=0;
-      while(m<128){
-	table[m]=0;
-	m++;
-      }
+      clear(table);
       
       j++;
     }
     
     k=0;
-    i=(127<<23) + (offset << 13);
-     while(k < 8192){
-	result=finv_s(i);
-	out = finv(i,best);
+    i=(127<<23) + (offset << 14);
+     while(k < 16384){
+	result=fsqrt_s(i);
+	out = fsqrt(i,best);
 	del = out - result;
 	table[del+64] = table[del+64]+1;
 	k++;
 	i++;
       }
-
+     
      //print23bin(ctou(dummy[offset]));
      //printtable(table);
      //printf("%d\n",lub(table));
      aaa[offset] = 0 - ((lub(table)+glb(table)) /2);
-     fprintf(stderr,"aaa: %d\n",aaa[offset]);
-     /*m=0;
-     while(m<128){
-       table[m]=0;
-       m++;
-     }*/
     
-     if(dist < 10){
-      fprintf(stderr,"clear: offset=%d,dist=%d,best=%d,glb=%d,lub=%d\n",offset,dist,best,glb(table),lub(table));
+     //clear(table);
+    
+     if(dist < 6){
+       fprintf(stderr,"clear: offset=%d,dist=%d,exp=%d,best=%d,glb=%d,lub=%d\n",offset,dist,aaa[offset],best,glb(table),lub(table));
     }else{
-      fprintf(stderr,"FAILED...: offset=%d,dist=%d,best=%d,glb=%d,lub=%d\n",offset,dist,best,glb(table),lub(table));
-      failed++;
+       fprintf(stderr,"failed......: offset=%d,dist=%d,exp=%d,best=%d,glb=%d,lub=%d\n",offset,dist,aaa[offset],best,glb(table),lub(table));
       }
-    fprintf(stderr,"sinchoku...%d/%d\n",offset-atoi(argv[1]),atoi(argv[2])-atoi(argv[1]));
-    //incdecprint2(dummy2,best,offset);
+    
+     incdecprint2(dummy2,best,offset);
+     
+     clear(table);
+      
+     fprintf(stderr,"sinchoku...%d/%d\n",offset,atoi(argv[2]));
 
-      m=0;
-      while(m<128){
-	table[m]=0;
-	m++;
-      }
-
-      offset++;
+     offset++;
   }
   offset=atoi(argv[1]);
   while(offset < atoi(argv[2])){
@@ -194,7 +194,7 @@ int main(int argc, char*argv[]){
   }
 
 	//printf("best case: %d dist: %d\n",best,dist);
-  fprintf(stderr,"failed cases: %d/%d\n",failed,atoi(argv[2])-atoi(argv[1]));
+  
   
   return 0;
 }

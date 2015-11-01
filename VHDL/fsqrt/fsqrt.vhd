@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_unsigned.all;
 use IEEE.STD_LOGIC_ARITH.ALL;
 
--- 2clkで答を返す
+-- 3clkで答を返す
 entity fsqrt is
   port(clk:  in std_logic;
        op:  in std_logic_vector(31 downto 0);
@@ -37,21 +37,13 @@ end component;
     addr : in  std_logic_vector(awidth - 1 downto 0));
 end component;
 
-  component fmul_sqrt
-  port(clk: in std_logic;
-       romdata:  in std_logic_vector(22 downto 0); --23bit
-       del: in std_logic_vector(12 downto 0); --12bit
-       flag: in std_logic;
-       ans:  out std_logic_vector(22 downto 0) -- dataと引き算するため23bit
-       );
-end component;
-
-signal din,do1,do2: std_logic_vector(12 downto 0);
+signal din,do2: std_logic_vector(12 downto 0);
+signal do1: std_logic_vector(22 downto 0);
 signal addr: std_logic_vector(9 downto 0);
-signal data,adata,data2,mulans: std_logic_vector(22 downto 0);
-signal del: std_logic_vector(13 downto 0);
-signal flag,exf,exf2,we: std_logic;
-signal exp,exp2: std_logic_vector(7 downto 0);
+signal del1,del2: std_logic_vector(6 downto 0);
+signal data,adata,data2: std_logic_vector(22 downto 0);
+signal flag,aflag,aaflag,exf,aexf,we: std_logic;
+signal exp,aexp,aaexp: std_logic_vector(7 downto 0);
 
 begin
 
@@ -61,9 +53,6 @@ begin
   rom1:blockram1
     port map(clk,we,din,do2,addr);
 
-  mul_inv:fmul_sqrt
-    port map(clk,data2,del,flag,mulans);
-	 
 del1<=op(13 downto 7);
 del2<=op(6 downto 0);
 we<='0';
@@ -93,24 +82,22 @@ mul3<=adel2*data1(13 downto 7);
   pipe2:process(clk)
   begin
     if rising_edge(clk) then
+      ainit<=init;
+      aaexp<=aexp;
+      aaflag<=aflag;
       if aexf = '0' then
         amul1<="000000000" & mul1;
         amul2<="0000000000000000" & mul2(13 downto 7);
         amul3<="0000000000000000" & mul3(13 downto 7);
-        ainit<=init;
-        aaexp<=aexp;
-        aaflag<=aflag;
       else
         amul1<="000000000" & adel1 & adel2;
         amul2<="00000000000000000000000";
         amul3<="00000000000000000000000";
-        ainit<=init;
-        aaexp<=aexp;
-        aaflag<=aflag;
+      end if;
     end if;
   end process;
 	 
-ans<="0" & aaexp & (ainit + ("0" & (mul1 + mul2 + mul3))(21 downto 0))) when aaflag = '1' else
+ans<="0" & aaexp & (ainit + ("0" & (mul1 + mul2 + mul3)(21 downto 0))) when aaflag = '1' else
      "0" & aaexp & (ainit + mul1 + mul2 + mul3);
 
 end VHDL;
