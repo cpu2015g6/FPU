@@ -38,19 +38,20 @@ end component;
 end component;
 
 signal din,do2: std_logic_vector(12 downto 0);
-signal do1: std_logic_vector(22 downto 0);
+signal mul1,mul2,mul3: std_logic_vector(13 downto 0);
+signal amul1,amul2,amul3,din2: std_logic_vector(22 downto 0);
+signal do1,init,ainit: std_logic_vector(22 downto 0);
 signal addr: std_logic_vector(9 downto 0);
-signal del1,del2: std_logic_vector(6 downto 0);
-signal data,adata,data2: std_logic_vector(22 downto 0);
+signal del1,del2,adel1,adel2,data1,data2: std_logic_vector(6 downto 0);
 signal flag,aflag,aaflag,exf,aexf,we: std_logic;
 signal exp,aexp,aaexp: std_logic_vector(7 downto 0);
-
+signal pohe : std_logic_vector(13 downto 0);
 begin
 
   rom1:blockram1
-    port map(clk,we,din,do1,addr);
+    port map(clk,we,din2,do1,addr);
 
-  rom1:blockram1
+  rom2:blockram2
     port map(clk,we,din,do2,addr);
 
 del1<=op(13 downto 7);
@@ -70,14 +71,14 @@ exp<=("0" & op(30 downto 24)) + 63 + op(23);
       adel1<=del1;
       adel2<=del2;
       init<=do1;
-      data1<=do2(13 downto 7);
+      data1<="1" & do2(12 downto 7);
       data2<=do2(6 downto 0);
     end if;
   end process;
 
 mul1<=adel1*data1;
-mul2<=adel1*data2(13 downto 7);
-mul3<=adel2*data1(13 downto 7);
+mul2<=adel1*data2;
+mul3<=adel2*data1;
 
   pipe2:process(clk)
   begin
@@ -97,7 +98,8 @@ mul3<=adel2*data1(13 downto 7);
     end if;
   end process;
 	 
-ans<="0" & aaexp & (ainit + ("0" & (mul1 + mul2 + mul3)(21 downto 0))) when aaflag = '1' else
+pohe <= mul1 + mul2 + mul3;
+ans<="0" & aaexp & (ainit + ("0" & pohe)) when aaflag = '1' else
      "0" & aaexp & (ainit + mul1 + mul2 + mul3);
 
 end VHDL;

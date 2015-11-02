@@ -61,6 +61,6 @@ result<=(r11 & "0000000000") +
         (x"000000" & r32(15 downto 14));
 
 ans<=asgn & (aexp+1) & result(24 downto 2) when result(25) = '1' else
-     asgn & aexp & result(23 downto 1)
+     asgn & aexp & result(23 downto 1);
       
 end VHDL;

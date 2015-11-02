@@ -6,7 +6,7 @@ entity blockram1 is
 
   generic (
     dwidth : integer := 23;
-    awidth : integer := );
+    awidth : integer := 10);
 
   port (
     clk  : in  std_logic;
