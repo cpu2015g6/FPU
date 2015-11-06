@@ -45,7 +45,11 @@ signal addr: std_logic_vector(9 downto 0);
 signal del1,del2,adel1,adel2,data1,data2: std_logic_vector(6 downto 0);
 signal flag,aflag,aaflag,exf,aexf,we: std_logic;
 signal exp,aexp,aaexp: std_logic_vector(7 downto 0);
+<<<<<<< HEAD
 signal pohe : std_logic_vector(22 downto 0);
+=======
+signal pohe : std_logic_vector(13 downto 0);
+>>>>>>> 8d6633e947537b21a851f10ffdcb0ed9fedc82d8
 begin
 
   rom1:blockram1
@@ -70,6 +74,12 @@ exp<=("0" & op(30 downto 24)) + 63 + op(23);
       aexf<=exf;
       adel1<=del1;
       adel2<=del2;
+<<<<<<< HEAD
+=======
+      init<=do1;
+      data1<="1" & do2(12 downto 7);
+      data2<=do2(6 downto 0);
+>>>>>>> 8d6633e947537b21a851f10ffdcb0ed9fedc82d8
     end if;
   end process;
 
@@ -98,8 +108,14 @@ mul3<=adel2*data1;
     end if;
   end process;
 	 
+<<<<<<< HEAD
 pohe <= amul1 + amul2 + amul3;
 ans<="0" & aaexp & (ainit + ("0" & pohe(22 downto 1))) when aaflag = '1' else
      "0" & aaexp & (ainit + pohe);
+=======
+pohe <= mul1 + mul2 + mul3;
+ans<="0" & aaexp & (ainit + ("0" & pohe)) when aaflag = '1' else
+     "0" & aaexp & (ainit + mul1 + mul2 + mul3);
+>>>>>>> 8d6633e947537b21a851f10ffdcb0ed9fedc82d8
 
 end VHDL;
