@@ -7,6 +7,12 @@
   encode
  */
 
+uint32_t fneg(uint32_t a){
+  if(a >> 31)
+    return a - (1 << 31);
+  return a + (1 << 31);
+}
+
 int distri(int *table){
   int i=0;
   int low=0;

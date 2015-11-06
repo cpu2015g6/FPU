@@ -29782,8 +29782,10 @@ BEGIN
 		low2<=low;
       high <= rom(conv_integer(addr+2));
 		high2<=high;
+		low3<=low2+4;
+		high3<=high2-4;
       addr<=addr+3;
-      if not((low2 <= tb_output) and (high2 >= tb_output)) then
+      if low3 > tb_output or high3 < tb_output then
         miss <= miss + 1;
       end if;
     end if;

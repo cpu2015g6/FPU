@@ -29574,7 +29574,7 @@ ARCHITECTURE testbench OF FPU_testbench IS
   signal simclk : std_logic := '0';
   signal state : std_logic_vector(2 downto 0) := "111";
   signal addr : std_logic_vector(18 downto 0) := "0000000000000000000";
-  signal low,high : std_logic_vector(31 downto 0) := x"00000000";
+  signal low,high,low2,high2,low3,high3 : std_logic_vector(31 downto 0) := x"00000000";
   signal miss : std_logic_vector(19 downto 0) := x"00000";
 
 
@@ -29591,8 +29591,12 @@ BEGIN
       tb_input1 <= rom(conv_integer(addr));
       low <= rom(conv_integer(addr+1));
       high <= rom(conv_integer(addr+2));
+		low2<=low;
+		high2<=high;
+		low3<=low2;
+		high3<=high2;
       addr<=addr+3;
-      if not((low <= tb_output) and (high >= tb_output)) then
+      if low3 > tb_output or high3 < tb_output then
         miss <= miss + 1;
       end if;
     end if;

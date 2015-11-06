@@ -9,7 +9,7 @@ fadd...シミュ、実機での動作確認済。2段pipelined
 
 fmul...シミュ、実機での動作確認済。2段pipelined
 
-finv...動作確認中。3段pipelined
+finv...シミュ、実機での動作確認済。3段pipelined
 
-fsqrt...動作確認中。3段pipelined
+fsqrt...シミュ、実機での動作確認済。3段pipelined
 
