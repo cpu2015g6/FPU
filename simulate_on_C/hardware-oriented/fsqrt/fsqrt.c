@@ -2,10 +2,6 @@
 #include <stdint.h>
 #include "sqrtrom.h"
 
-extern int fcmp(uint32_t a, uint32_t b);
-extern void printbin(uint32_t x);
-//extern int encode(uint32_t a);
-//extern int pencoder(uint32_t a);
 extern uint32_t ctou23(char *c);
 extern uint32_t ctou13(char *c);
 extern uint32_t vector(uint32_t a, int i, int j);

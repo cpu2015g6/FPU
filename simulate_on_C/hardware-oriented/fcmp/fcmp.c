@@ -9,42 +9,22 @@
  */
 
 //it has no different between hard and soft
-int fcmp(uint32_t a, uint32_t b){
+uint32_t fcmp(uint32_t a, uint32_t b){
   int sgna = a >> 31;//sgna<=a(31)
   int sgnb = b >> 31;//sgnb<=b(31)
 
-  if(a == b)//ans<=0 when a=b
+  if(sgna != sgnb && !sgna)
+    return 2;
+  else if(sgna != sgnb && sgna)
     return 0;
-  
-  if(!a){//a=0
-    if(sgnb)//b<0
-      return 1;
-    else
-      return -1;
-  }else if(!b){//b=0
-    if(sgna)//a<0
-      return -1;
-    else
-      return 1;
-  }
-  
-  if(sgna != sgnb){
-    if(sgna)//a<0,b>0
-      return -1;
-    else
-      return 1;
-  }
+  else if(a > b && !sgna)
+    return 2;
+  else if(b > a && sgna)
+    return 2;
+  else if(a != b)
+    return 0;
 
-  
-  if((a << 1) > (b << 1)){//|a| > |b|
-    if(sgna)//a,b<0
-      return -1;
-    else
-      return 1;
-  }else if(sgna)
-      return 1;
-
-  return -1;
+  return 1;
 }
   
   

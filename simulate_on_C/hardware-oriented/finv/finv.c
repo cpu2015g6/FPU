@@ -2,24 +2,10 @@
 #include <stdint.h>
 #include "invrom.h"
 
-;extern int fcmp(uint32_t a, uint32_t b);
-extern void printbin(uint32_t x);
-//extern int encode(uint32_t a);
-//extern int pencoder(uint32_t a);
+
 extern uint32_t ctou23(char *c);
 extern uint32_t ctou13(char *c);
 extern uint32_t vector(uint32_t a, int i, int j);
-
-
-/*uint32_t fmul_square_man(uint32_t data){
-
-  uint32_t c1 = (1 << 6) + vector(data,22,17);
-  uint32_t c2 = vector(data,16,10);
-
-  uint32_t ans = c1*c1 + (2*c1*c2 >> 7);
-  
-  return ans;
-}*/
   
 uint32_t fmul_man(uint32_t data2,uint32_t del){
   uint32_t c1 = vector(data2,13,7);

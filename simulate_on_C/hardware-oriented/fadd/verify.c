@@ -23,7 +23,7 @@
  *                      符号付き 0 に潰す (ビットフラグで指定)
  *  OUT_PLUS_ZERO:      正規化数どうしの演算結果が非正規化数になる場合は
  *                      +0 に潰す (ビットフラグで指定) */
-#define SUBNORMAL   (SYSTEM_DEFAULT)
+#define SUBNORMAL   (SUBNORMAL_ANY | OUT_SIGNED_ZERO)
 
 /*  [丸め]
  *  ROUND_EVEN:     偶数丸め
@@ -50,19 +50,6 @@
 #define mask(x, y)      (((1u << ((y) - (x))) - 1u) << (x))
 
 uint32_t fadd(uint32_t, uint32_t);
-
-uint32_t enc(char *p){
-  int i=0;
-  uint32_t o=0;
-  while(i<32){
-   o = o << 1;
-   if(p[i] == '1')
-     o++;
-   i++;
-  }
-  return o;
-}
-
 
 const char *test[] = {
     "0 + 0",
@@ -154,11 +141,6 @@ int main()
         }
         if (fread(f, sizeof(union F), 2, fp) == 0) break;
     }
-
-    uint32_t k = enc("00000000000110100011110110011000");
-    uint32_t j = enc("00001000001101110111001001110010");
-
-    fadd(k,j);
     
     fclose(fp);
     

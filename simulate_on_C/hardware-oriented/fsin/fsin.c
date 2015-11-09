@@ -34,34 +34,34 @@ uint32_t kernel_cos(uint32_t f){
 /*[0,pi/4)に簡約*/
 uint32_t fsin(uint32_t f){
 
-  if(fcmp(f,0) < 0)
-    f = fneg(f);
-  if(fcmp(f,0x40c90fda) > 0)
+  if(fcmp(f,0) == 0)
+    return fneg(fsin(f - (1 << 31)));
+  if(fcmp(f,0x40c90fda) == 2)
     return fsin(fadd(f,0xc0c90fda));
-  if(fcmp(f,MYPI) < 0){
-    if(fcmp(f,MYPI2) < 0){
-      if(fcmp(f,MYPI4) < 0)
+  if(fcmp(f,MYPI) == 0){
+    if(fcmp(f,MYPI2) == 0){
+      if(fcmp(f,MYPI4) == 0)
 	return kernel_sin(f);
       else
 	return kernel_cos(fadd(MYPI2,fneg(f)));
     }else{
-      if(fcmp(f,fadd(MYPI4,MYPI2)) < 0)
+      if(fcmp(f,fadd(MYPI4,MYPI2)) == 0)
 	kernel_cos(fadd(f,fneg(MYPI2)));
       else
 	kernel_sin(fadd(MYPI,fneg(f)));
+    }
+  }else{
+    f = fadd(f,fneg(MYPI));
+    if(fcmp(f,MYPI2) == 0){
+      if(fcmp(f,MYPI4) == 0)
+	return fneg(kernel_sin(f));
+      else
+	return fneg(kernel_cos(fadd(MYPI2,fneg(f))));
     }else{
-      f = fadd(f,fneg(MYPI));
-      if(fcmp(f,MYPI2) < 0){
-	if(fcmp(f,MYPI4) < 0)
-	  return fneg(kernel_sin(f));
-	else
-	  return fneg(kernel_cos(fadd(MYPI2,fneg(f))));
-      }else{
-	if(fcmp(f,fadd(MYPI4,MYPI2)) < 0)
-	  fneg(kernel_cos(fadd(f,fneg(MYPI2))));
-	else
-	  fneg(kernel_sin(fadd(MYPI,fneg(f))));
-      }
+      if(fcmp(f,fadd(MYPI4,MYPI2)) == 0)
+	fneg(kernel_cos(fadd(f,fneg(MYPI2))));
+      else
+	fneg(kernel_sin(fadd(MYPI,fneg(f))));
     }
   }
   
