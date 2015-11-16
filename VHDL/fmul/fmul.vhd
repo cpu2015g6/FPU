@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_unsigned.all;
 use IEEE.STD_LOGIC_ARITH.ALL;
 
--- 2clkで答を返す
+-- 3clkで答を返す
 entity fmul is
   port(clk:       in std_logic;
        op1, op2:  in std_logic_vector(31 downto 0);
@@ -13,11 +13,12 @@ end fmul;
 
 architecture VHDL of fmul is
 
-  signal sgn,asgn:std_logic := '0';
-  signal exp1,exp2,exp,aexp:std_logic_vector(7 downto 0);
+  signal sgn,asgn,aasgn:std_logic := '0';
+  signal exp1,exp2,exp,aexp,aaexp:std_logic_vector(7 downto 0);
   signal t11,t12,t13,t21,t22,t23: std_logic_vector(7 downto 0);
   signal r11,r12,r13,r21,r22,r23,r31,r32: std_logic_vector(15 downto 0);
-  signal result: std_logic_vector(25 downto 0);
+  signal ar13,ar31,ar23,ar32: std_logic_vector(25 downto 0);
+  signal result,aresult,aresult2: std_logic_vector(25 downto 0);
   
 begin
 
@@ -54,13 +55,24 @@ exp<=exp1 + exp2 - 127;
 result<=(r11 & "0000000000") +
         (x"00" & r12 & "00") +
         (x"00" & r21 & "00") +
-        (x"0000" & r22(15 downto 6)) +
-        (x"0000" & r13(15 downto 6)) +
-        (x"0000" & r31(15 downto 6)) + 
-        (x"000000" & r23(15 downto 14)) +
-        (x"000000" & r32(15 downto 14));
+        (x"0000" & r22(15 downto 6));
 
-ans<=asgn & (aexp+1) & result(24 downto 2) when result(25) = '1' else
-     asgn & aexp & result(23 downto 1);
+    pipe2:process(clk)
+    begin
+      if rising_edge(clk) then
+        aresult<=result;
+        ar13<=x"0000" & r13(15 downto 6);
+        ar31<=x"0000" & r31(15 downto 6);
+        ar23<=x"000000" & r23(15 downto 14);
+        ar32<=x"000000" & r32(15 downto 14);
+        aaexp<=aexp;
+        aasgn<=asgn;
+      end if;
+    end process;
+
+aresult2<=aresult+ar13+ar31+ar23+ar32;
+
+ans<=aasgn & (aaexp+1) & aresult2(24 downto 2) when aresult2(25) = '1' else
+     aasgn & aaexp & aresult2(23 downto 1);
       
 end VHDL;
