@@ -1,0 +1,2177 @@
+pc: 0
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 0         reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 0         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------1 times clk rising----------------------------------------------
+
+pc: 0
+
+op:  LIMM(208)
+rt:  1
+ra:  15
+rb:  15
+imm: 100
+rob full
+
+rob     :youngest:  0  
+oldest  :  0  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    INVA   0        0      
+1    0    INVA   0        0       9    0    INVA   0        0      
+2    0    INVA   0        0       10   0    INVA   0        0      
+3    0    INVA   0        0       11   0    INVA   0        0      
+4    0    INVA   0        0       12   0    INVA   0        0      
+5    0    INVA   0        0       13   0    INVA   0        0      
+6    0    INVA   0        0       14   0    INVA   0        0      
+7    0    INVA   0        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 0         reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 0         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------2 times clk rising----------------------------------------------
+
+pc: 0
+
+op:  LIMM(208)
+rt:  1
+ra:  15
+rb:  15
+imm: 100
+rob full
+
+rob     :youngest:  0  
+oldest  :  0  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    INVA   0        0      
+1    0    INVA   0        0       9    0    INVA   0        0      
+2    0    INVA   0        0       10   0    INVA   0        0      
+3    0    INVA   0        0       11   0    INVA   0        0      
+4    0    INVA   0        0       12   0    INVA   0        0      
+5    0    INVA   0        0       13   0    INVA   0        0      
+6    0    INVA   0        0       14   0    INVA   0        0      
+7    0    INVA   0        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    0 (rob)   0 (rob)   0 (rob)
+value   :               0         100       0         0       0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 0         reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 0         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------3 times clk rising----------------------------------------------
+
+pc: 1
+
+op:  LIMM(208)
+rt:  2
+ra:  15
+rb:  15
+imm: 0
+rob full
+
+rob     :youngest:  1  
+oldest  :  0  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    1    EXEC   1        0       8    0    INVA   0        0      
+1    0    INVA   0        0       9    0    INVA   0        0      
+2    0    INVA   0        0       10   0    INVA   0        0      
+3    0    INVA   0        0       11   0    INVA   0        0      
+4    0    INVA   0        0       12   0    INVA   0        0      
+5    0    INVA   0        0       13   0    INVA   0        0      
+6    0    INVA   0        0       14   0    INVA   0        0      
+7    0    INVA   0        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    1 (rob)   0 (rob)   0 (rob)
+value   :               0         100       0         1       0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    0 (rob)   0 (rob)   0 (rob)
+value   :               100       100       0         0       1       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 0         reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 0         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------4 times clk rising----------------------------------------------
+
+pc: 2
+
+op:  STW(216)
+rt:  15
+ra:  1
+rb:  2
+imm: 0
+rob full
+
+rob     :youngest:  2  
+oldest  :  0  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    1    EXEC   1        0       8    0    INVA   0        0      
+1    1    EXEC   2        0       9    0    INVA   0        0      
+2    0    INVA   0        0       10   0    INVA   0        0      
+3    0    INVA   0        0       11   0    INVA   0        0      
+4    0    INVA   0        0       12   0    INVA   0        0      
+5    0    INVA   0        0       13   0    INVA   0        0      
+6    0    INVA   0        0       14   0    INVA   0        0      
+7    0    INVA   0        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    2 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         2       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    1 (rob)   0 (rob)   0 (rob)
+value   :               100       100       0         1       2       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 0         reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 0         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------5 times clk rising----------------------------------------------
+
+pc: 3
+
+op:  LIMM(208)
+rt:  3
+ra:  15
+rb:  15
+imm: 1
+rob full
+
+rob     :youngest:  3  
+oldest  :  0  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    1    DONE   1        100     8    0    INVA   0        0      
+1    1    EXEC   2        0       9    0    INVA   0        0      
+2    2    EXEC   3        0       10   0    INVA   0        0      
+3    0    INVA   0        0       11   0    INVA   0        0      
+4    0    INVA   0        0       12   0    INVA   0        0      
+5    0    INVA   0        0       13   0    INVA   0        0      
+6    0    INVA   0        0       14   0    INVA   0        0      
+7    0    INVA   0        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    2 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         2       3       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 0         reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 0         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------6 times clk rising----------------------------------------------
+
+pc: 3
+
+op:  LIMM(208)
+rt:  3
+ra:  15
+rb:  15
+imm: 1
+rob full
+
+rob     :youngest:  4  
+oldest  :  1  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    INVA   0        0      
+1    1    DONE   2        100     9    0    INVA   0        0      
+2    2    EXEC   3        0       10   0    INVA   0        0      
+3    15   DUMM   3        0       11   0    INVA   0        0      
+4    0    INVA   0        0       12   0    INVA   0        0      
+5    0    INVA   0        0       13   0    INVA   0        0      
+6    0    INVA   0        0       14   0    INVA   0        0      
+7    0    INVA   0        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    4 (rob)   0 (rob)   0 (rob)
+value   :               0         1         0         3       0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 100       reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 0         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------7 times clk rising----------------------------------------------
+
+pc: 4
+
+op:  LDW(217)
+rt:  4
+ra:  2
+rb:  15
+imm: 0
+rob full
+
+rob     :youngest:  5  
+oldest  :  2  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    INVA   0        0      
+1    0    INVA   0        0       9    0    INVA   0        0      
+2    2    DONE   3        0       10   0    INVA   0        0      
+3    15   DUMM   3        0       11   0    INVA   0        0      
+4    3    EXEC   4        0       12   0    INVA   0        0      
+5    0    INVA   0        0       13   0    INVA   0        0      
+6    0    INVA   0        0       14   0    INVA   0        0      
+7    0    INVA   0        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    5 (rob)   0 (rob)   0 (rob)
+value   :               0         1         0         4       0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    4 (rob)   0 (rob)   0 (rob)
+value   :               1         1         0         3       4       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 100       reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 0         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------8 times clk rising----------------------------------------------
+
+pc: 5
+
+op:  LIMM(208)
+rt:  0
+ra:  15
+rb:  15
+imm: 0
+rob full
+
+rob     :youngest:  6  
+oldest  :  3  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    INVA   0        0      
+1    0    INVA   0        0       9    0    INVA   0        0      
+2    0    INVA   0        0       10   0    INVA   0        0      
+3    15   DUMM   3        0       11   0    INVA   0        0      
+4    3    EXEC   4        0       12   0    INVA   0        0      
+5    3    EXEC   5        0       13   0    INVA   0        0      
+6    0    INVA   0        0       14   0    INVA   0        0      
+7    0    INVA   0        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    5 (rob)   0 (rob)   0 (rob)
+value   :               1         1         0         4       5       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    : LDW   WAIT    6 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         5       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 100       reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 0         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------9 times clk rising----------------------------------------------
+
+pc: 6
+
+op:  LIMM(208)
+rt:  0
+ra:  15
+rb:  15
+imm: 0
+rob full
+
+rob     :youngest:  7  
+oldest  :  4  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    INVA   0        0      
+1    0    INVA   0        0       9    0    INVA   0        0      
+2    0    INVA   0        0       10   0    INVA   0        0      
+3    0    INVA   0        0       11   0    INVA   0        0      
+4    3    DONE   4        1       12   0    INVA   0        0      
+5    3    EXEC   5        0       13   0    INVA   0        0      
+6    4    EXEC   6        0       14   0    INVA   0        0      
+7    0    INVA   0        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    7 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         6       0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    : LDW   EXEC    6 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         5       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 100       reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 0         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------10 times clk rising----------------------------------------------
+
+pc: 7
+
+op:  LIMM(208)
+rt:  0
+ra:  15
+rb:  15
+imm: 0
+rob full
+
+rob     :youngest:  8  
+oldest  :  5  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    INVA   0        0      
+1    0    INVA   0        0       9    0    INVA   0        0      
+2    0    INVA   0        0       10   0    INVA   0        0      
+3    0    INVA   0        0       11   0    INVA   0        0      
+4    0    INVA   0        0       12   0    INVA   0        0      
+5    3    DONE   5        1       13   0    INVA   0        0      
+6    4    EXEC   6        0       14   0    INVA   0        0      
+7    0    EXEC   7        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    8 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         7       0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    7 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         6       7       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    : LDW   EXEC    6 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         5       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 100       reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 1         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------11 times clk rising----------------------------------------------
+
+pc: 8
+
+op:  LIMM(208)
+rt:  0
+ra:  15
+rb:  15
+imm: 0
+rob full
+
+rob     :youngest:  9  
+oldest  :  6  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    EXEC   8        0      
+1    0    INVA   0        0       9    0    INVA   0        0      
+2    0    INVA   0        0       10   0    INVA   0        0      
+3    0    INVA   0        0       11   0    INVA   0        0      
+4    0    INVA   0        0       12   0    INVA   0        0      
+5    0    INVA   0        0       13   0    INVA   0        0      
+6    4    EXEC   6        0       14   0    INVA   0        0      
+7    0    EXEC   7        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    9 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         8       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    8 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         7       8       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    : LDW   EXEC    6 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         5       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 100       reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 1         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------12 times clk rising----------------------------------------------
+
+pc: 9
+
+op:  LIMM(208)
+rt:  0
+ra:  15
+rb:  15
+imm: 0
+rob full
+
+rob     :youngest:  10 
+oldest  :  6  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    EXEC   8        0      
+1    0    INVA   0        0       9    0    EXEC   9        0      
+2    0    INVA   0        0       10   0    INVA   0        0      
+3    0    INVA   0        0       11   0    INVA   0        0      
+4    0    INVA   0        0       12   0    INVA   0        0      
+5    0    INVA   0        0       13   0    INVA   0        0      
+6    4    EXEC   6        0       14   0    INVA   0        0      
+7    0    DONE   7        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    9 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         8       9       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    10(rob)   0 (rob)   0 (rob)
+value   :               0         0         0         9       0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    : LDW   EXEC    6 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         5       0       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 100       reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 1         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------13 times clk rising----------------------------------------------
+
+pc: 10
+
+op:  LIMM(208)
+rt:  0
+ra:  15
+rb:  15
+imm: 0
+rob full
+
+rob     :youngest:  11 
+oldest  :  6  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    DONE   8        0      
+1    0    INVA   0        0       9    0    EXEC   9        0      
+2    0    INVA   0        0       10   0    EXEC   10       0      
+3    0    INVA   0        0       11   0    INVA   0        0      
+4    0    INVA   0        0       12   0    INVA   0        0      
+5    0    INVA   0        0       13   0    INVA   0        0      
+6    4    EXEC   6        0       14   0    INVA   0        0      
+7    0    DONE   7        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    11(rob)   0 (rob)   0 (rob)
+value   :               0         0         0         10      0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    10(rob)   0 (rob)   0 (rob)
+value   :               0         0         0         9       10      
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       DONE    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       6       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 100       reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 1         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------14 times clk rising----------------------------------------------
+
+pc: 11
+
+op:  LIMM(208)
+rt:  0
+ra:  15
+rb:  15
+imm: 0
+rob full
+
+rob     :youngest:  12 
+oldest  :  6  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    DONE   8        0      
+1    0    INVA   0        0       9    0    DONE   9        0      
+2    0    INVA   0        0       10   0    EXEC   10       0      
+3    0    INVA   0        0       11   0    EXEC   11       0      
+4    0    INVA   0        0       12   0    INVA   0        0      
+5    0    INVA   0        0       13   0    INVA   0        0      
+6    4    EXEC   6        0       14   0    INVA   0        0      
+7    0    DONE   7        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    12(rob)   0 (rob)   0 (rob)
+value   :               0         0         0         11      0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    11(rob)   0 (rob)   0 (rob)
+value   :               0         0         0         10      11      
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       DONE    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       6       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 100       reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 1         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------15 times clk rising----------------------------------------------
+
+pc: 12
+
+op:  LIMM(208)
+rt:  0
+ra:  15
+rb:  15
+imm: 0
+rob full
+
+rob     :youngest:  13 
+oldest  :  6  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    DONE   8        0      
+1    0    INVA   0        0       9    0    DONE   9        0      
+2    0    INVA   0        0       10   0    DONE   10       0      
+3    0    INVA   0        0       11   0    EXEC   11       0      
+4    0    INVA   0        0       12   0    EXEC   12       0      
+5    0    INVA   0        0       13   0    INVA   0        0      
+6    4    EXEC   6        0       14   0    INVA   0        0      
+7    0    DONE   7        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    12(rob)   0 (rob)   0 (rob)
+value   :               0         0         0         11      12      
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    13(rob)   0 (rob)   0 (rob)
+value   :               0         0         0         12      0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       DONE    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       6       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 100       reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 1         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------16 times clk rising----------------------------------------------
+
+pc: 13
+
+op:  LIMM(208)
+rt:  0
+ra:  15
+rb:  15
+imm: 0
+rob full
+
+rob     :youngest:  14 
+oldest  :  6  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    DONE   8        0      
+1    0    INVA   0        0       9    0    DONE   9        0      
+2    0    INVA   0        0       10   0    DONE   10       0      
+3    0    INVA   0        0       11   0    DONE   11       0      
+4    0    INVA   0        0       12   0    EXEC   12       0      
+5    0    INVA   0        0       13   0    EXEC   13       0      
+6    4    EXEC   6        0       14   0    INVA   0        0      
+7    0    DONE   7        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    14(rob)   0 (rob)   0 (rob)
+value   :               0         0         0         13      0       
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    13(rob)   0 (rob)   0 (rob)
+value   :               0         0         0         12      13      
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       DONE    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       6       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 100       reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 1         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------17 times clk rising----------------------------------------------
+
+pc: 14
+
+op:  LIMM(208)
+rt:  0
+ra:  15
+rb:  15
+imm: 0
+rob full
+
+rob     :youngest:  15 
+oldest  :  6  
+
+rob  reg  state  pcnext   data    rob  reg  state  pcnext   data
+0    0    INVA   0        0       8    0    DONE   8        0      
+1    0    INVA   0        0       9    0    DONE   9        0      
+2    0    INVA   0        0       10   0    DONE   10       0      
+3    0    INVA   0        0       11   0    DONE   11       0      
+4    0    INVA   0        0       12   0    DONE   12       0      
+5    0    INVA   0        0       13   0    EXEC   13       0      
+6    4    EXEC   6        0       14   0    EXEC   14       0      
+7    0    DONE   7        0       15   0    INVA   0        0      
+stall
+
+-----------------------ALU reservasion station----------------------
+ALUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+ALUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  WAIT    15(rob)   0 (rob)   0 (rob)
+value   :               0         0         0         14      0       
+validity:                         OK        OK
+
+ALUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    : LIMM  DONE    14(rob)   0 (rob)   0 (rob)
+value   :               0         0         0         13      14      
+validity:                         OK        OK
+
+ALUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+-----------------------FPU reservasion station----------------------
+FPUrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+FPUrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0.000000  0.000000  0.000000    0       0       
+validity:                         OK        OK
+
+
+-------------------------MEM reservasion station--------------------------
+MEMrs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       DONE    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       6       
+validity:                         OK        OK
+
+MEMrs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+MEMrs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+----------------------BRANCH reservasion station---------------------
+BRArs(0): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(1): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(2): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+BRArs(3): inst  state   rt        ra        rb        pc      pcnext
+addr    :       INVA    0 (rob)   0 (rob)   0 (rob)
+value   :               0         0         0         0       0       
+validity:                         OK        OK
+
+
+reg  0: 0         reg  8: 0         reg 16: 0         reg 24: 0         
+reg  1: 100       reg  9: 0         reg 17: 0         reg 25: 0         
+reg  2: 0         reg 10: 0         reg 18: 0         reg 26: 0         
+reg  3: 1         reg 11: 0         reg 19: 0         reg 27: 0         
+reg  4: 0         reg 12: 0         reg 20: 0         reg 28: 0         
+reg  5: 0         reg 13: 0         reg 21: 0         reg 29: 0         
+reg  6: 0         reg 14: 0         reg 22: 0         reg 30: 0         
+reg  7: 0         reg 15: 0         reg 23: 0         reg 31: 0         
+
+---------------------------------------------18 times clk rising----------------------------------------------
+
+pc: 15
+cpu halt...

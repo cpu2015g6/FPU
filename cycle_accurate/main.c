@@ -1,6 +1,6 @@
 #include "common.h"
 
-#define T 8388608
+#define T 1000
 
 recvif_out_type rcv;
 
@@ -10,9 +10,9 @@ recvif_out_type recvif(int rn){
 }
 
 void transmitter(int en, uint32_t data){
-  char c = data % 256;
+  //char c = data % 256;
   if(en)
-    fprintf(stdout,"%c",c);
+    fprintf(stdout,"%d\n",data);
 }
 
 int main(int argc, char* argv[]){
@@ -29,11 +29,12 @@ int main(int argc, char* argv[]){
 
   program_loader(argv[1]);//instant load
 
-  while(clk++ < T){
+  while(clk < T){
     cpu_top_in.sramifout = sramif(clk, rst, cpu_top_out.sramifin);
     cpu_top_in.recvifout = recvif(cpu_top_out.recvifin.rd_en);
     cpu_top_out = cpu_top(clk,rst,cpu_top_in);
     transmitter(cpu_top_out.transifin.wr_en,cpu_top_out.transifin.din);
+    clk++;
   }
   fprintf(stderr,"timeover %d clks \n",T);
   

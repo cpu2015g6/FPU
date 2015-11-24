@@ -1,5 +1,7 @@
 #include "common.h"
+#include <string.h>
 #include <stdint.h>
+#include <unistd.h>
 #include <stdio.h>
 
 typedef struct{
@@ -31,15 +33,17 @@ void printcdb(cdb_type cdb){
   fprintf(stderr,"cdb: %-8d    %-2d(rob)      %-8d    %s\n\n",cdb.data,cdb.tag.rob_num,cdb.pc_next,v);
 }
 
-void printrs(alu_reg_type ar){
+void print_alu_rs(alu_reg_type ar){
   int i=0;
   char* inst;
   char* state;
   char* v1 = malloc(sizeof(char)*3);
   char* v2 = malloc(sizeof(char)*3);
+  fprintf(stderr,"\n-----------------------ALU reservasion station----------------------\n");
   for(i=0;i<4;i++){
     inst = deco(ar.rs[i].op);
     state = deco_rs_state(ar.rs[i].common.state);
+    if(strcmp(inst,"----")){
     if(ar.rs[i].common.ra.tag.valid)
       v1 = "NG\0";
     else
@@ -57,6 +61,7 @@ void printrs(alu_reg_type ar){
     free(state);
     free(v1);
     free(v2);*/
+    }
   }
 }
 
@@ -118,6 +123,10 @@ alu_out_type alu(int clk, int rst, alu_in_type alu_in){
 	else
 	  v.rs[i].common.result = LT_CONST;
 	break;
+      case HALT:
+	fprintf(stderr,"CPU HALT......\n");
+        _exit(1);
+	break;
       default:
 	fprintf(stderr,"undefined operator\n");
 	break;
@@ -156,22 +165,22 @@ alu_out_type alu(int clk, int rst, alu_in_type alu_in){
     }
   }
 
-  //clk rising
-  if(rst)
-    a_r=a_reg_zero;
-  else
-    a_r=a_r_in;
-  
   if(alu_in.rst == 1)
     a_r_in=a_reg_zero;
   else
     a_r_in=v;
 
+  //clk rising
+  if(rst)
+    a_r=a_reg_zero;
+  else
+    a_r=a_r_in;
+
   alu_out_type alu_out={a_r.rs_full,a_r.cdb_out};
 
-  printrs(a_r);
+  print_alu_rs(a_r);
 
-  printcdb(alu_out.cdb_out);
+  //printcdb(alu_out.cdb_out);
 
   return alu_out;
 }

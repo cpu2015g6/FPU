@@ -91,6 +91,11 @@ uint32_t fadd(uint32_t a, uint32_t b){
 
   int flag = (vector(a,31,31) + vector(b,31,31)) % 2; // xor
   
+  if(!vector(a,30,23))
+    return b;
+  if(!vector(b,30,23))
+    return a;
+  
   if(flag)
     return revfadd(a,b);
  

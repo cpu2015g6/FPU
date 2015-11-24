@@ -1,5 +1,6 @@
 #include "fpu.h"
 #include "common.h"
+#include <string.h>
 
 typedef struct{
   fpu_rs_type rs[4];
@@ -14,6 +15,52 @@ fpu_reg_type f_reg_zero = {{FPU_RS_ZERO,FPU_RS_ZERO,FPU_RS_ZERO,FPU_RS_ZERO},0,0
 
 fpu_reg_type f_r= F_REG_ZERO;
 fpu_reg_type f_r_in= F_REG_ZERO;
+
+void print_fpu_rs(fpu_reg_type ar){
+  int i=0;
+  char* inst;
+  char* state;
+  char* v1 = malloc(sizeof(char)*3);
+  char* v2 = malloc(sizeof(char)*3);
+  float rt,ra,rb;
+  fprintf(stderr,"\n-----------------------FPU reservasion station----------------------\n");
+  for(i=0;i<4;i++){
+    inst = deco(ar.rs[i].op);
+    state = deco_rs_state(ar.rs[i].common.state);
+    if(strcmp(inst,"----")){
+    if(ar.rs[i].common.ra.tag.valid)
+      v1 = "NG\0";
+    else
+      v1 = "OK\0";
+    if(ar.rs[i].common.rb.tag.valid)
+      v2 = "NG\0";
+    else
+      v2 = "OK\0";
+    if(!strcmp(inst,"FCMP")){
+    memcpy(&ra,&(ar.rs[i].common.ra.data),4);
+    memcpy(&rb,&(ar.rs[i].common.rb.data),4);
+    fprintf(stderr,"FPUrs(%d): inst  state   rt        ra        rb        pc      pcnext\n",i);
+    fprintf(stderr,"addr    : %-5s %-4s    %-2d(rob)   %-2d(rob)   %-2d(rob)\n",inst,state,ar.rs[i].common.rob_num,ar.rs[i].common.ra.tag.rob_num,ar.rs[i].common.rb.tag.rob_num);
+    fprintf(stderr,"value   :               %-6d  %-6f  %-6f    %-7d %-7d \n",ar.rs[i].common.result,ra,rb,ar.rs[i].common.pc,ar.rs[i].common.pc_next);
+    fprintf(stderr,"validity:                         %s        %s\n",v1,v2);
+    fprintf(stderr,"\n");
+    }else{
+    memcpy(&ra,&(ar.rs[i].common.ra.data),4);
+    memcpy(&rb,&(ar.rs[i].common.rb.data),4);
+    memcpy(&rt,&(ar.rs[i].common.result),4);
+    fprintf(stderr,"FPUrs(%d): inst  state   rt        ra        rb        pc      pcnext\n",i);
+    fprintf(stderr,"addr    : %-5s %-4s    %-2d(rob)   %-2d(rob)   %-2d(rob)\n",inst,state,ar.rs[i].common.rob_num,ar.rs[i].common.ra.tag.rob_num,ar.rs[i].common.rb.tag.rob_num);
+    fprintf(stderr,"value   :               %-6f  %-6f  %-6f    %-7d %-7d \n",rt,ra,rb,ar.rs[i].common.pc,ar.rs[i].common.pc_next);
+    fprintf(stderr,"validity:                         %s        %s\n",v1,v2);
+    fprintf(stderr,"\n");
+    }
+    /*free(inst);
+    free(state);
+    free(v1);
+    free(v2);*/
+    }
+  }
+}
 
 //op
 uint32_t fadd_op1;
@@ -180,16 +227,18 @@ fpu_out_type fpu(int clk, int rst, fpu_in_type fpu_in){//twoproc
   fsqrt_ans[0] = fsqrt(fsqrt_op1);
   finv_ans[0] = finv(finv_op1);
 
+  if(fpu_in.rst == 1)
+    f_r_in=f_reg_zero;
+  else
+    f_r_in=v;
+
   //clk rising
   if(rst)
     v = f_reg_zero;
   else
     f_r = f_r_in;
 
-  if(fpu_in.rst == 1)
-    f_r_in=f_reg_zero;
-  else
-    f_r_in=v;
+  print_fpu_rs(f_r);
 
   fpu_out_type fpu_out={f_r.rs_full,f_r.cdb_out};
 

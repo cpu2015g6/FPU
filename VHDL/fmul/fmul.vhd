@@ -19,6 +19,7 @@ architecture VHDL of fmul is
   signal r11,r12,r13,r21,r22,r23,r31,r32: std_logic_vector(15 downto 0);
   signal ar13,ar31,ar23,ar32: std_logic_vector(25 downto 0);
   signal result,aresult,aresult2: std_logic_vector(25 downto 0);
+  signal zflag,zflag2,zflag3: std_logic;
   
 begin
 
@@ -35,6 +36,8 @@ exp1<=op1(30 downto 23);
 exp2<=op2(30 downto 23);
 exp<=exp1 + exp2 - 127;
 
+zflag<='1' when op1(30 downto 23) = x"00" or op2(30 downto 23) = x"00" else
+       '0';
 
   pipe:process(clk)
     begin
@@ -48,7 +51,8 @@ exp<=exp1 + exp2 - 127;
        r23<=t12*t23;
        r32<=t13*t22;
        aexp<=exp;
-       asgn<=sgn;
+       asgn<=sgn; 
+       zflag2<=zflag;
       end if;
     end process;
 
@@ -67,12 +71,14 @@ result<=(r11 & "0000000000") +
         ar32<=x"000000" & r32(15 downto 14);
         aaexp<=aexp;
         aasgn<=asgn;
+        zflag3<=zflag2;
       end if;
     end process;
 
 aresult2<=aresult+ar13+ar31+ar23+ar32;
 
-ans<=aasgn & (aaexp+1) & aresult2(24 downto 2) when aresult2(25) = '1' else
+ans<= x"00000000" when zflag3='1' else
+     aasgn & (aaexp+1) & aresult2(24 downto 2) when aresult2(25) = '1' else
      aasgn & aaexp & aresult2(23 downto 1);
       
 end VHDL;

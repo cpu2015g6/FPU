@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-extern int encode(uint32_t a);
+extern uint32_t vector(uint32_t a,int i,int j);
 
 uint32_t mulround(uint32_t ulp, uint32_t f){
   if(f >> 31){
@@ -72,12 +72,11 @@ uint32_t fmulsub(uint32_t a, uint32_t b){
   return (sgn << 31) + (exp << 23) + man + mulround((man%2),frac);
 }
   
-//-0.0の入る演算のみサポートしていない
 uint32_t fmul(uint32_t a, uint32_t b){
-  int typa = encode(a);
-  int typb = encode(b);
+  //int typa = encode(a);
+  //int typb = encode(b);
 
-  if(typa == 7 || typb == 7)
+  /*if(typa == 7 || typb == 7)
     return 0xffc00000;//NaN
   if((typa == 4 || typa == 5) && typb == 6)
     return 0xffc00000;
@@ -90,8 +89,8 @@ uint32_t fmul(uint32_t a, uint32_t b){
   if((typa == 5 && (typb % 2)) || (typb == 5 && (typa % 2)))
     return 0x7f800000;
   if((typa == 4 && !(typb % 2)) || (typb == 4 && !(typa % 2)))
-    return 0xff800000;
-  if(typa > 1 && typb > 1)
+    return 0xff800000;*/
+  if(!vector(a,30,23) || !vector(b,30,23))
     return 0;
   
   return fmulsub(a,b);

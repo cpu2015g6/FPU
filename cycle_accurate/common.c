@@ -311,8 +311,21 @@ uint32_t blockram(int clk, int we, uint32_t addr, uint32_t din){
 
 void program_loader(char* binary){
   FILE* fp = fopen(binary,"r");
-  void* buf;
-  for(buf = (void *)bram;fread(buf,4,1,fp);buf += 4);
+  uint32_t* buf = malloc(4);
+  uint32_t* buf2 = bram;
+  uint32_t a1,a2,a3,a4;
+  //int i=0;
+  for(;fread(buf,4,1,fp);buf2++){ 
+      a4 = buf[0] % 256;
+      a3 = (buf[0] / 256) % 256;
+      a2 = (buf[0] / (256 * 256)) % 256;
+      a1 = buf[0] / (256 * 256 * 256);
+      //if(i < 10)
+        //fprintf(stdout,"%d clk %d %d %d %d \n",i,a1,a2,a3,a4);
+      //i++;
+      buf2[0] = a4 * 0x1000000 + a3 * 0x10000 + a2 * 0x100 + a1 * 1;
+  }
+  fclose(fp);
 }
 
 char* deco_rs_state(int o){
@@ -424,14 +437,19 @@ char* deco(int o){
   case 0xFF:
     s = "FCMP\0";
     break;
+  default:
+    s = "----\0";
+    break;
   }
   return s;
 }
 
 void printdecode(decode_result_type d){
+  fprintf(stderr,"---------------------DECODE RESULT----------------------");
   fprintf(stderr,"\nop:  %s(%d)\n",deco(d.opc),d.opc);
   fprintf(stderr,"rt:  %d\n",d.rt);
   fprintf(stderr,"ra:  %d\n",d.ra);
   fprintf(stderr,"rb:  %d\n",d.rb);
   fprintf(stderr,"imm: %d\n",d.imm);
+  fprintf(stderr,"--------------------------------------------------------\n\n");
 }

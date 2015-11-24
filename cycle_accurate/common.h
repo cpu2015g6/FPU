@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <stdint.h>
 
+#define HALT 0xD6
+
 //bramもここにつっこんだ
 
 //std_logic_vectorは全てuint32_tで表現

@@ -1,15 +1,26 @@
 #include "common.h"
 
 uint32_t sram[1048576];//4MB
-uint32_t hist_sram;
+uint32_t addrhist[2];
+int xwahist[2];
 
 uint32_t srambeh(int xwa,uint32_t addr,uint32_t din){//latency 2
-  uint32_t returnvalue = hist_sram;
-  if(xwa)
-    hist_sram = sram[addr];
-  else
-    sram[addr] = din;
-  return returnvalue;
+  uint32_t ans;
+  if(xwahist[1])
+    ans = sram[addrhist[1]];
+  else{
+    fprintf(stderr,"-----------sram write------------\n");
+    fprintf(stderr,"addr: %d\n",addrhist[1]);
+    fprintf(stderr,"data: %d\n",din);
+    fprintf(stderr,"---------------------------------\n");
+    sram[addrhist[1]] = din;
+    ans = din;
+  }
+  addrhist[1]=addrhist[0];
+  xwahist[1]=xwahist[0];
+  addrhist[0]=addr;
+  xwahist[0]=xwa;
+  return ans;
 }
 
 typedef struct{
@@ -43,9 +54,9 @@ sramif_out sramif(int clk, int rst, sramif_in sramifin){
   int XWA;
   if(s_r.sramifin.op == SRAM_STORE)
     XWA=0;
-  else 
+  else
     XWA=1;
-  
+   
   uint32_t ZDin;
   if(s_r.xstore == 0)
     ZDin = s_r.store_data;
@@ -53,11 +64,6 @@ sramif_out sramif(int clk, int rst, sramif_in sramifin){
     ZDin = 0;
     
   uint32_t ZDout = srambeh(XWA,s_r.sramifin.addr,ZDin);//not treat nop
-
-  if(rst)
-    s_r = sram_reg_zero;
-  else
-    s_r = s_r_in;
   
   v = s_r;
   v.sramifin = sramifin;
@@ -92,7 +98,11 @@ sramif_out sramif(int clk, int rst, sramif_in sramifin){
     break;
   }
   s_r_in = v;
-  
+
+  if(rst)
+    s_r = sram_reg_zero;
+  else
+    s_r = s_r_in;  
 
   return sramifout;
 }

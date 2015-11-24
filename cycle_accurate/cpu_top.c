@@ -2,8 +2,6 @@
 #include <unistd.h>
 #include "common.h"
 
-#define HALT 0xD6
-
 int bram_we = 0;//std_logic
 uint32_t bram_addr,bram_addr_cpu,bram_addr_pl;//vector pc_width-1 downto 0
 uint32_t bram_din = 0;//vec 31 downto 0
@@ -116,11 +114,11 @@ extern fpu_out_type fpu(int clk, int rst, fpu_in_type fpu_in);
 
 mem_in_type mem_in = MEM_IN_ZERO;
 mem_out_type mem_out;
-extern mem_out_type mem(int clk, int rst, mem_op_type rs_in_op,
-			int rs_in_has_dummy/*std_logic*/,
+extern mem_out_type mem(int clk, int rst, mem_in_type mem_in/*mem_op_type rs_in_op,
+			int rs_in_has_dummy,
 			rs_common_type rs_in_common,cdb_type cdb_in,
-			int cdb_next,int sync_rst,int dummy_done/*3つのstd_logic*/,
-			sramif_out sramifout,recvif_out_type recvifout,transif_out_type transifout);
+			int cdb_next,int sync_rst,int dummy_done,
+			sramif_out sramifout,recvif_out_type recvifout,transif_out_type transifout*/);
 
 branch_in_type branch_in = BRANCH_IN_ZERO;
 branch_out_type branch_out;
@@ -225,7 +223,7 @@ decode_result_type inst_decode(uint32_t inst){//for rev1
     decode_result.ra = ra_rev1;
     decode_result.rb = rb_rev1;
     break;
-  case NOT://----------?
+  case NOT:
     decode_result.opc = NOT;
     decode_result.rt = rt_rev1;
     decode_result.ra = ra_rev1;
@@ -309,12 +307,11 @@ decode_result_type inst_decode(uint32_t inst){//for rev1
     decode_result.rb = rb_rev1;
     break;
   case HALT:
-    fprintf(stderr,"cpu halt...\n");
-    _exit(1);
+    decode_result.opc = HALT;
     break;
   }
   
-  //printdecode(decode_result);//for sim
+  printdecode(decode_result);//for sim
 
   return decode_result;
 }		 
@@ -398,6 +395,7 @@ cpu_top_out_type cpu_top(int clk, int rst, cpu_top_in_type cpu_top_in){
   //printreg(clk,r,0);
   
   bram_dout = blockram(clk,bram_we,bram_addr,bram_din);//ここに置く
+  fprintf(stderr,"pc: %d\n",bram_addr);
 
   bram_addr_cpu=r_in.pc;
   if(r.state == CPU_LOADING){
@@ -411,11 +409,6 @@ cpu_top_out_type cpu_top(int clk, int rst, cpu_top_in_type cpu_top_in){
   }
   
   cpu_top_out.transifin = mem_out.transifin;
-  
-  if(rst)
-    r=reg_zero;
-  else
-    r=r_in;
 
   int i=0;//loop variant
   
@@ -438,6 +431,23 @@ cpu_top_out_type cpu_top(int clk, int rst, cpu_top_in_type cpu_top_in){
   uint32_t zext_imm;
   //int insert_dummy_rob_entry;//boolean
   int go_pl_v;//std_logic
+
+  //関数呼び出しで組み合わせ回路を実現
+
+  alu_out = alu(clk,rst,alu_in);
+  fpu_out = fpu(clk,rst,fpu_in);
+  mem_out = mem(clk,rst,mem_in
+		/*mem_in.rs_in.op,
+		mem_in.rs_in.has_dummy,
+		mem_in.rs_in.common,
+		mem_in.cdb_in,
+		mem_in.cdb_next,
+		mem_in.rst,
+		mem_in.dummy_done,
+		mem_in.sramifout,
+		mem_in.recvifout,
+		mem_in.transifout*/);
+  branch_out = branch(clk,rst,branch_in);
   
   v=r;
   alu_in_v = alu_in_zero;
@@ -538,6 +548,11 @@ cpu_top_out_type cpu_top(int clk, int rst, cpu_top_in_type cpu_top_in){
       case SRL:
 	unit = ALU_UNIT;
 	alu_rs_v.op = SRL;
+	alu_rs_v.common = rs_common_3;
+	break;
+      case HALT://simulator only
+	unit = ALU_UNIT;
+	alu_rs_v.op = HALT;
 	alu_rs_v.common = rs_common_3;
 	break;
       case FADD:
@@ -680,8 +695,8 @@ cpu_top_out_type cpu_top(int clk, int rst, cpu_top_in_type cpu_top_in){
 
       stall = rob_full(r.rob);
     
-      if(!stall){
-	fprintf(stderr,"rob full\n");
+      if(stall){
+	fprintf(stderr,"<<<<<<<<<<<<<<<<<<<<rob_full>>>>>>>>>>>>>>>>>>>>\n");
       }
     
       switch(unit){
@@ -707,7 +722,7 @@ cpu_top_out_type cpu_top(int clk, int rst, cpu_top_in_type cpu_top_in){
       branch_in_v.cdb_in = r.cdb;
 
       //fprintf(stderr,"<<<dbg>>>\n\n");
-      printrob(v.rob);
+      //printrob(v.rob);
       //fprintf(stderr,"<<<dbg>>>\n\n");
 
       if(!stall){
@@ -738,7 +753,7 @@ cpu_top_out_type cpu_top(int clk, int rst, cpu_top_in_type cpu_top_in){
 	}
       }
       
-      if(!stall){
+      if(stall){
 	fprintf(stderr,"stall\n");
       }
 
@@ -761,7 +776,7 @@ cpu_top_out_type cpu_top(int clk, int rst, cpu_top_in_type cpu_top_in){
 	v.rob.rob_array[v.rob.oldest] = rob_zero;
 	v.rob.oldest = v.rob.oldest + 1;
       }else if(oldest_rob.state == ROB_RESET){
-	fprintf(stderr,"rob reset");
+	fprintf(stderr,"rob reset\n");
 	if(oldest_rob.reg_num != REG_NUM_ZERO){
 	  //assert
 	  v.registers[oldest_rob.reg_num].data = oldest_rob.result;
@@ -808,28 +823,24 @@ cpu_top_out_type cpu_top(int clk, int rst, cpu_top_in_type cpu_top_in){
   branch_in = branch_in_v;
   r_in = v;
 
-  //関数呼び出しで組み合わせ回路を実現
+  fprintf(stderr,"---------------------------------------------%d times clk rising----------------------------------------------\n\n",clk+1);
 
-  alu_out = alu(clk,rst,alu_in);
-  fpu_out = fpu(clk,rst,fpu_in);
-  mem_out = mem(clk,rst,
-		mem_in.rs_in.op,
-		mem_in.rs_in.has_dummy,
-		mem_in.rs_in.common,
-		mem_in.cdb_in,
-		mem_in.cdb_next,
-		mem_in.rst,
-		mem_in.dummy_done,
-		mem_in.sramifout,
-		mem_in.recvifout,
-		mem_in.transifout);
-  branch_out = branch(clk,rst,branch_in);
+  fprintf(stderr,"sram[0]: %d\n",sram[0]);
+  fprintf(stderr,"sram[1]: %d\n",sram[1]);
+  fprintf(stderr,"sram[2]: %d\n",sram[2]);
+  fprintf(stderr,"sram[3]: %d\n",sram[3]);
+  fprintf(stderr,"sram[4]: %d\n",sram[4]);
+  fprintf(stderr,"sram[5]: %d\n",sram[5]);
+  fprintf(stderr,"sram[6]: %d\n",sram[6]);
 
-  //printrob(r.rob);
+  if(rst)//clk rising
+    r=reg_zero;
+  else
+    r=r_in;
+
+  printrob(r.rob);
 
   printreg(r);
-
-  fprintf(stderr,"------------------%d times clk rising----------------------\n\n",clk);
 
   return cpu_top_out;
 }

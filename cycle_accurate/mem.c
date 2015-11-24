@@ -1,5 +1,6 @@
 #include "common.h"
 #include <stdint.h>
+#include <string.h>
 
 typedef struct{
   mem_rs_type rs[4];
@@ -33,19 +34,50 @@ mem_rs_type rs_executing_update(mem_rs_type rs, uint32_t load_in, uint32_t seria
   return new_rs;
 }
 
-mem_out_type mem(int clk, int rst, mem_op_type rs_in_op,
-		 int rs_in_has_dummy/*std_logic*/,
+void print_mem_rs(mem_reg_type ar){
+  int i=0;
+  char* inst;
+  char* state;
+  char* v1 = malloc(sizeof(char)*3);
+  char* v2 = malloc(sizeof(char)*3);
+  fprintf(stderr,"\n-----------------------MEM reservasion station----------------------\n");
+  for(i=0;i<4;i++){
+    inst = deco(ar.rs[i].op);
+    //fprintf(stderr,"op: %d",ar.rs[i].op);
+    state = deco_rs_state(ar.rs[i].common.state);
+    if(strcmp(inst,"----")){
+    if(ar.rs[i].common.ra.tag.valid)
+      v1 = "NG\0";
+    else
+      v1 = "OK\0";
+    if(ar.rs[i].common.rb.tag.valid)
+      v2 = "NG\0";
+    else
+      v2 = "OK\0";
+    fprintf(stderr,"MEMrs(%d): inst  state   rt        ra        rb        pc      pcnext\n",i);
+    fprintf(stderr,"addr    : %-5s %-4s    %-2d(rob)   %-2d(rob)   %-2d(rob)\n",inst,state,ar.rs[i].common.rob_num,ar.rs[i].common.ra.tag.rob_num,ar.rs[i].common.rb.tag.rob_num);
+    fprintf(stderr,"value   :               %-6d    %-6d    %-6d    %-7d %-7d \n",ar.rs[i].common.result,ar.rs[i].common.ra.data,ar.rs[i].common.rb.data,ar.rs[i].common.pc,ar.rs[i].common.pc_next);
+    fprintf(stderr,"validity:                         %s        %s\n",v1,v2);
+    fprintf(stderr,"\n");
+    /*free(inst);
+    free(state);
+    free(v1);
+    free(v2);*/
+    }
+  }
+}
+
+mem_out_type mem(int clk, int rst, mem_in_type mem_in/*mem_op_type rs_in_op,
+		 int rs_in_has_dummy,
 		 rs_common_type rs_in_common,cdb_type cdb_in,
-		 int cdb_next,int sync_rst,int dummy_done/*3つのstd_logic*/,
+		 int cdb_next,int sync_rst,int dummy_done,
 		 sramif_out sramifout,
 		 recvif_out_type recvifout,
-		 transif_out_type transifout){
+		 transif_out_type transifout*/){
 
-  mem_in_type mem_in;
-  
   mem_out_type mem_out;
 
-  mem_in.rs_in.op=rs_in_op;
+  /*mem_in.rs_in.op=rs_in_op;
   mem_in.rs_in.has_dummy=rs_in_has_dummy;
   mem_in.rs_in.common=rs_in_common;
   mem_in.cdb_in = cdb_in;
@@ -54,7 +86,7 @@ mem_out_type mem(int clk, int rst, mem_op_type rs_in_op,
   mem_in.dummy_done = dummy_done;
   mem_in.sramifout = sramifout;
   mem_in.recvifout = recvifout;
-  mem_in.transifout = transifout;
+  mem_in.transifout = transifout;*/
   //mem_out.cdb_out = m_r.cdb_out;
   //mem_out.rs_full = m_r.rs_full;
   
@@ -164,17 +196,19 @@ mem_out_type mem(int clk, int rst, mem_op_type rs_in_op,
   else
     v.rs_full = 0;
 
-  if(rst)
-    m_r=m_reg_zero;
-  else
-    m_r=m_r_in;
-  
   //synchronous reset
   if(mem_in.rst == 1)
     m_r_in = m_reg_zero;
   else
     m_r_in = v;
 
+  if(rst)
+    m_r=m_reg_zero;
+  else
+    m_r=m_r_in;
+
+  print_mem_rs(m_r);
+  
   mem_out.rs_full = m_r.rs_full;
   mem_out.cdb_out = m_r.cdb_out;
 
